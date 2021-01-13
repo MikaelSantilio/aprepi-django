@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Third-party APPs
-    'django-extensions',
+    'django_extensions',
     # Project APPs
     'users',
     'core',
@@ -96,9 +96,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -107,7 +107,23 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
+# STATIC
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#static-root
+STATIC_ROOT = str(BASE_DIR / "staticfiles")
+# https://docs.djangoproject.com/en/dev/ref/settings/#static-url
+STATIC_URL = "/static/"
+# https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
+STATICFILES_DIRS = [str(BASE_DIR / "static")]
+# https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
 
-STATIC_URL = '/static/'
+# MEDIA
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#media-root
+MEDIA_ROOT = str(BASE_DIR / "media")
+# https://docs.djangoproject.com/en/dev/ref/settings/#media-url
+MEDIA_URL = "/media/"

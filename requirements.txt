@@ -2,3 +2,5 @@
 Django==3.1.5
 # Django Extensions
 django-extensions==3.1.0
+# Flake8
+flake8==3.8.4
