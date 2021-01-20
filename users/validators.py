@@ -1,13 +1,13 @@
 import re
 from django.core.validators import EMPTY_VALUES
 from django.forms import ValidationError
+from django.core.validators import RegexValidator
 from django.utils.translation import ugettext_lazy as _
 
-error_messages = {
-    'invalid': _("Número de CPF inválido."),
-    'digits_only': _("O campo requer apenas números."),
-    'max_digits': _("O campo requer exatamente 11 dígitos."),
-}
+
+validate_phone = RegexValidator(
+        regex=r'(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})',
+        message="Phone number must be entered in the format: '99 99999-9999'. Up to 15 digits allowed.")
 
 
 def DV_maker(v):
@@ -33,6 +33,11 @@ def validate_CPF(value):
     Value can be either a string in the format XXX.XXX.XXX-XX or an
     11-digit number.
     """
+    error_messages = {
+        'invalid': _("Número de CPF inválido."),
+        'digits_only': _("O campo requer apenas números."),
+        'max_digits': _("O campo requer exatamente 11 dígitos."),
+    }
 
     if value in EMPTY_VALUES:
         return u''
