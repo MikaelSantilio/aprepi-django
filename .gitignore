@@ -1,3 +1,11 @@
+# Bulk City, State files
+cidades*
+estados*
+cidades.txt
+estados.txt
+criar-cidades-estados.py
+
+
 .vscode/*
 .vscode
 # Byte-compiled / optimized / DLL files
