@@ -13,6 +13,7 @@ class CreditCard(models.Model):
     card_type = models.CharField(max_length=32, blank=True, null=True)
     cardholder_name = models.CharField(max_length=32)
     cvv = models.CharField(max_length=4)
+    valid = models.BooleanField(default=True)
 
 
 class Donation(Base):
@@ -32,7 +33,6 @@ class Donation(Base):
         ("authorized", "Autorizado"),
         ("rejected", "Rejeitado"),
         ("charged_back", "Estornado"),
-        ("approved", "Aprovado"),
     )
 
     benefactor = models.ForeignKey(Benefactor, null=True, blank=True, on_delete=models.SET_NULL)
