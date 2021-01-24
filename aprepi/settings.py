@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     # Project APPs
     'users',
     'core',
+    'evento',
 ]
 
 MIDDLEWARE = [
