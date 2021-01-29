@@ -1,8 +1,23 @@
 from django import forms
 from donations.models import Donation
+from core.forms import RequestKwargModelFormMixin
 
 
-class DonationForm(forms.ModelForm):
+class DonationForm(RequestKwargModelFormMixin, forms.ModelForm):
+
     class Meta:
         model = Donation
         fields = ('donated_value', 'method')
+
+        def clean(self):
+            cleaned_data = super().clean()
+            self.cleaned_data["benefactor"] = self.request.user.pk
+            cleaned_data["benefactor"] = self.request.user.pk
+            return cleaned_data
+
+        def save(self):
+            method = self.cleaned_data.get('method')
+            donated_value = self.cleaned_data.get('donated_value')
+            benefactor = self.request.user.benefactor
+            return Donation.objects.create(
+                donated_value=donated_value, benefactor=benefactor, method=method)

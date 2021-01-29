@@ -4,12 +4,21 @@ from donations.forms import DonationForm
 from django.http import HttpResponse
 from django.template.response import TemplateResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from core.views import RequestFormKwargsMixin
 
 
-class MakeDonation(LoginRequiredMixin, View):
+class MakeDonation(LoginRequiredMixin, RequestFormKwargsMixin, View):
     template_name = 'donations/make_donation.html'
     form_class = DonationForm
     # success_url = '/thanks/'
+
+    def get_form_kwargs(self):
+        """ Passes the request object to the form class.
+         This is necessary to only display members that belong to a given user"""
+
+        kwargs = super(AddMeal, self).get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -20,16 +29,23 @@ class MakeDonation(LoginRequiredMixin, View):
         return context
 
     def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-        form.send_email()
+        benefactor = self.request.user.benefactor
+        form.instance.benefactor = benefactor
+
+        self.validate_donation(form.instance.method, benefactor)    
+
         return super().form_valid(form)
 
-    def form_invalid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-        form.send_email()
-        return super().form_valid(form)
+    # def form_invalid(self, form):
+    #     return super().form_valid(form)
+    
+
+    def validate_donation(self, method, benefactor):
+
+        if form.instance.method == "CREDIT":
+            # Lanca excecao se nao tiver
+            benefactor.get_valid_credit_card()
+            # aqui acontece a logica de cobranca
 
 
     def get(self, request, *args, **kwargs):

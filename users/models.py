@@ -48,7 +48,7 @@ class Member(Base):
 
 
 class Benefactor(Base):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User, related_name='benefactor', on_delete=models.CASCADE, primary_key=True)
 
 
 class Voluntary(Base):
