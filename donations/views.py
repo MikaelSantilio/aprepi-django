@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.edit import View
-from donations.forms import DonationForm
-from django.http import HttpResponse
+from donations.forms import DonationForm, BenefactorForm
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from core.views import RequestFormKwargsMixin
