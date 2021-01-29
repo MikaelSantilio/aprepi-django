@@ -32,9 +32,14 @@ class MakeDonation(LoginRequiredMixin, RequestFormKwargsMixin, View):
         benefactor = self.request.user.benefactor
         form.instance.benefactor = benefactor
 
-        self.validate_donation(form.instance.method, benefactor)    
+        print('\n\n\n########')
+        print(form.instance)
+        print('\n\n\n########')
 
-        return super().form_valid(form)
+
+        # self.validate_donation(form.instance.method, benefactor)    
+
+        # return super().form_valid(form)
 
     # def form_invalid(self, form):
     #     return super().form_valid(form)
