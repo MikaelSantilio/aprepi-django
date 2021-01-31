@@ -16,6 +16,7 @@ urlpatterns = [
     path('recuperar/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('recuperar/feito/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 
-    path('cadastro/benfeitor/', views.register_benefactor, name="signup-benefactor"),
-    path('cadastro/socio/', views.register_member, name="signup-member"),
+    path('cadastro/benfeitor/', views.BenefactorSignUpView.as_view(), name="signup-benefactor"),
+    # path('cadastro/benfeitor/', views.register_benefactor, name="signup-benefactor"),
+    path('cadastro/socio/', views.MemberSignUpView.as_view(), name="signup-member"),
 ]

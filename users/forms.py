@@ -13,6 +13,7 @@ class MemberForm(forms.ModelForm):
     class Meta(UserCreationForm.Meta):
         model = Member
         fields = '__all__'
+        exclude = ['user', 'active']
 
 
 class MemberSignUpForm(UserCreationForm):
