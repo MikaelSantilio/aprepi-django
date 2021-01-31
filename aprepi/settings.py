@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django_extensions',
     # Project APPs
     'users',
+    'donations',
     'core',
 ]
 
@@ -47,7 +48,7 @@ ROOT_URLCONF = 'aprepi.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [str(BASE_DIR / "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,3 +130,9 @@ MEDIA_ROOT = str(BASE_DIR / "media")
 MEDIA_URL = "/media/"
 
 AUTH_USER_MODEL = "users.User"
+
+LOGIN_REDIRECT_URL = "core:home"
+
+LOGIN_URL = "users:login"
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'

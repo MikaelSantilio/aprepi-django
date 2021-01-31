@@ -1,6 +1,10 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('fazer-doacao/', include('donations.urls', namespace='donations')),
+    path('', include('core.urls')),
+    path('minha-conta/', include('users.urls', namespace='users')),
 ]

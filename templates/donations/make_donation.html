@@ -1,0 +1,10 @@
+
+{% extends "base.html" %}
+{% block content %}
+<form method="post" action="{% url 'donations:unique-donation' %}">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Doar">
+</form>
+
+{% endblock content %}
