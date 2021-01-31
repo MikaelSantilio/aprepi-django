@@ -1,5 +1,6 @@
 from django.contrib.auth import views as auth_views
 from django.urls import path
+from users import views
 
 app_name = 'users'
 
@@ -14,4 +15,7 @@ urlpatterns = [
     path('recuperar-senha/feito/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('recuperar/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('recuperar/feito/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+
+    path('cadastro/benfeitor/', views.register_benefactor, name="signup-benefactor"),
+    path('cadastro/socio/', views.register_member, name="signup-member"),
 ]

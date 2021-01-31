@@ -1,3 +1,6 @@
+from django.views.generic import TemplateView
+
+
 class RequestFormKwargsMixin(object):
     """
     CBV mixin which puts the request into the form kwargs.
@@ -9,3 +12,8 @@ class RequestFormKwargsMixin(object):
         # Update the existing form kwargs dict with the request's user.
         kwargs.update({"request": self.request})
         return kwargs
+
+
+class HomeView(TemplateView):
+
+    template_name = "core/home.html"

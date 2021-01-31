@@ -15,8 +15,8 @@ class DonationForm(RequestKwargModelFormMixin, forms.ModelForm):
             cleaned_data["benefactor"] = self.request.user.pk
             return cleaned_data
 
-        def save(self):
-            method = self.cleaned_data.get('method')
-            donated_value = self.cleaned_data.get('donated_value')
-            return Donation.objects.create(
-                donated_value=donated_value, benefactor=benefactor, method=method)
+        # def save(self):
+        #     method = self.cleaned_data.get('method')
+        #     donated_value = self.cleaned_data.get('donated_value')
+        #     return Donation.objects.create(
+        #         donated_value=donated_value, benefactor=benefactor, method=method)
