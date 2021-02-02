@@ -8,7 +8,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, FormView, View
 from django.views.generic.base import ContextMixin, TemplateResponseMixin
-
+import pdb
 from users.forms import (BenefactorSignUpForm, MemberForm, MemberSignUpForm,
                          ProfileRegistrationDataSignUpForm)
 
@@ -131,7 +131,14 @@ class BenefactorSignUpView(TemplateResponseMixin, ContextMixin, View):
         if user_form.is_valid() and profile_form.is_valid():
             return self.form_valid(user_form, profile_form)
         else:
-            messages.error(request, 'Erro ao criar sua conta')
+            # v = None
+            for key, value in profile_form.errors.items():
+                for e in value:
+                    messages.warning(request, f"{key} - {e}")
+            for key, value in user_form.errors.items():
+                for e in value:
+                    messages.warning(request, f"{key} - {value}")
+            # pdb.set_trace()
             return self.render_to_response(self.get_context_data())
 
     def get(self, request, *args, **kwargs):

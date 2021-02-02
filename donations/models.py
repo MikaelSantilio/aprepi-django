@@ -52,7 +52,7 @@ def add_card_type(sender, instance, **kwargs):
     post_save.disconnect(add_card_type, sender=sender)
 
     validator = FNGCCValidator()
-    instance.type = validator.creditCard(instance.number)['type']
+    instance.card_type = validator.creditCard(instance.number)['type']
     instance.save()
 
     post_save.connect(add_card_type, sender=sender)
