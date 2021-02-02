@@ -17,6 +17,7 @@ urlpatterns = [
     path('recuperar/feito/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 
     path('cadastro/benfeitor/', views.BenefactorSignUpView.as_view(), name="signup-benefactor"),
-    # path('cadastro/benfeitor/', views.register_benefactor, name="signup-benefactor"),
     path('cadastro/socio/', views.MemberSignUpView.as_view(), name="signup-member"),
+    path('cadastro/funcionario/', views.EmployeeSignUpView.as_view(), name="signup-employee"),
+    path('cadastro/voluntario/', views.VoluntarySignUpView.as_view(), name="signup-voluntary"),
 ]

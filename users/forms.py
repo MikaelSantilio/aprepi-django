@@ -1,7 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.db import transaction
 from django import forms
-from users.models import Benefactor, ProfileRegistrationData, Member
+from users.models import Benefactor, ProfileRegistrationData, Member, Voluntary
 from django.contrib.auth import get_user_model
 
 
@@ -10,42 +9,27 @@ User = get_user_model()
 
 class MemberForm(forms.ModelForm):
 
-    class Meta(UserCreationForm.Meta):
+    class Meta:
         model = Member
         fields = '__all__'
-        exclude = ['user', 'active']
+        exclude = ['user', 'active', 'is_dead', 'death_date', 'departure_date']
 
 
-class MemberSignUpForm(UserCreationForm):
+class VoluntaryForm(forms.ModelForm):
+
+    class Meta:
+        model = Voluntary
+        fields = '__all__'
+        exclude = ['user', 'departure_date']
+
+
+class SignUpForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = User
 
-    @transaction.atomic
-    def save(self):
-        user = super().save(commit=False)
-        user.is_member = True
-        user.save()
-        Member.objects.create(user=user)
 
-        return user
-
-
-class BenefactorSignUpForm(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
-        model = User
-
-    @transaction.atomic
-    def save(self):
-        user = super().save(commit=False)
-        user.is_benefactor = True
-        user.save()
-        Benefactor.objects.create(user=user)
-
-        return user
-
-
-class ProfileRegistrationDataSignUpForm(forms.ModelForm):
+class ProfileForm(forms.ModelForm):
     class Meta:
         model = ProfileRegistrationData
         exclude = ['user', 'active']

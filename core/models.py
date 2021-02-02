@@ -30,6 +30,9 @@ class Function(models.Model):
     name = models.CharField(max_length=32)
     description = models.TextField()
 
+    def __str__(self):
+        return self.name
+
 
 class AddressFields(models.Model):
     state = models.ForeignKey(State, on_delete=models.CASCADE)
@@ -46,3 +49,6 @@ class AddressFields(models.Model):
 
 class Clinic(AddressFields):
     name = models.CharField(max_length=32)
+
+    def __str__(self):
+        return self.name
