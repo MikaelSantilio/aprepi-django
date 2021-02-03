@@ -12,7 +12,11 @@
                         Associação de Pacientes Renais do Piauí</button>
                     <button class="uk-button uk-button-large uk-button-primary">Contato</button>
                     <button class="uk-button uk-button-large uk-button-primary">Sobre Nós</button>
-                    <a href="{% url 'users:login' %}"><button class="uk-button uk-button-large uk-button-primary">Fazer Login</button></a>
+                    {% if not user.is_authenticated %}
+                        <a href="{% url 'users:login' %}"><button class="uk-button uk-button-large uk-button-primary">Fazer Login</button></a>
+                    {% else %}
+                        <a href="{% url 'core:dashboard' %}"><button class="uk-button uk-button-large uk-button-primary">Dashboard</button></a>
+                    {% endif %}
                 </ul>
 
             </div>
