@@ -2,6 +2,8 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from users.validators import validate_CPF, validate_phone
 from core.models import Base, AddressFields, Clinic, Function
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class User(AbstractUser):
@@ -27,8 +29,8 @@ class Member(Base):
         ("ESC", "Superior completo")
     )
     TREATMENT_CHOICES = (
-        ("HM", "HemodiÃ¡lise"),
-        ("DP", "DiÃ¡lise Peritoneal"),
+        ("HM", "Hemodiálise"),
+        ("DP", "Diálise Peritoneal"),
         ("TP", "Transplantado")
     )
 
@@ -48,7 +50,7 @@ class Member(Base):
 
 
 class Benefactor(Base):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User, related_name='benefactor', on_delete=models.CASCADE, primary_key=True)
 
 
 class Voluntary(Base):
