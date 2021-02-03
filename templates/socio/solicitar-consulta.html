@@ -1,0 +1,89 @@
+{% extends "header.html" %}
+
+{% block body %}
+
+<div class="uk-container uk-container-large">
+
+    <nav class="uk-section-secondary uk-navbar uk-preserve-color">
+        <div class="uk-navbar-center">
+            <div class="uk-button-group">
+                <ul class="uk-navbar-nav">
+                    <a href="index-socio">
+                        <button class="uk-button uk-button-large uk-button-secondary uk-active">SYSPREPI - Sistema da
+                            Associação de Pacientes Renais do Piauí</button>
+                    </a>
+
+                    <a href="/perfil-socio">
+                        <button class="uk-button uk-button-large uk-button-secondary">Meus Dados</button>
+                    </a>
+                    <a href="/login">
+                        <button class="uk-button uk-button-large uk-button-secondary">Sair da Conta</button>
+                    </a>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="uk-child-width-1-1@s uk-container-xsmall uk-margin-auto uk-grid-match uk-margin-xlarge" uk-grid>
+
+        <form class="uk-grid-small" uk-grid>
+            <div class="uk-width-1-1">
+
+                <div class="uk-margin">
+                    <span class="uk-label uk-label-primary uk-margin-small-bottom">Especialidade</span>
+
+                    <select class="uk-select">
+                        <option>Selecione a Especialidade</option>
+                        <option>Option 02</option>
+                    </select>
+                </div>
+            </div>
+            <div class="uk-width-1-2@s">
+                <div class="uk-margin">
+                    <span class="uk-label uk-label-primary uk-margin-small-bottom">Preferência de Horário</span>
+
+                    <select class="uk-select">
+                        <option>Selecione a Preferência de Horário</option>
+                        <option>Option 02</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="uk-width-1-4@s">
+                <span class="uk-label uk-label-primary uk-margin-small-bottom">Apartir de </span>
+
+                <input class="uk-input" type="date">
+            </div>
+            <div class="uk-width-1-4@s">
+                <span class="uk-label uk-label-primary uk-margin-small-bottom">Até</span>
+
+                <input class="uk-input" type="date">
+            </div>
+            <div class="uk-width-1-1@s">
+                <span class="uk-label uk-label-primary uk-margin-small-bottom">Descrição do Motivo</span>
+
+                <textarea class="uk-textarea" rows="5" placeholder=""></textarea>
+            </div>
+
+            <input class="uk-button uk-button-primary" type="button" value="Solicitar">
+        </form>
+
+    </div>
+
+</div>
+<a class="uk-button uk-button-default" href="#modal-center" uk-toggle>Modal</a>
+<div id="modal-center" class="uk-flex-top" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <p>
+            <span uk-icon="icon: check; ratio: 2"></span>
+            Solicitação de Consulta Realizada!
+            Você receberá um SMS quando sua solicitação for aprovada.
+        </p>
+        <a href="index-socio"><button class="uk-button uk-button-primary">Página Principal</button></a>
+    </div>
+</div>
+
+{% endblock %}

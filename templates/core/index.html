@@ -1,0 +1,58 @@
+{% extends "header.html" %}
+
+{% block body %}
+<div class="uk-container uk-container-large">
+
+    <nav class="uk-section-primary uk-navbar uk-preserve-color">
+        <div class="uk-navbar-center">
+            <div class="uk-button-group">
+
+                <ul class="uk-navbar-nav">
+                    <button class="uk-button uk-button-large uk-button-danger uk-active">SYSPREPI - Sistema da
+                        Associação de Pacientes Renais do Piauí</button>
+                    <button class="uk-button uk-button-large uk-button-primary">Contato</button>
+                    <button class="uk-button uk-button-large uk-button-primary">Sobre Nós</button>
+                    <a href="{% url 'users:login' %}"><button class="uk-button uk-button-large uk-button-primary">Fazer Login</button></a>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="uk-section uk-padding-remove">
+        <div uk-slideshow="animation: push">
+
+            <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
+        
+                <ul class="uk-slideshow-items">
+                    <li>
+                        <img src="https://escolagalli.com.br/wp-content/uploads/2018/03/maxresdefault.jpg" alt="" uk-cover>
+                    </li>
+                    <li>
+                        <img src="https://escolagalli.com.br/wp-content/uploads/2018/03/maxresdefault.jpg" alt="" uk-cover>
+                    </li>
+                    <li>
+                        <img src="https://escolagalli.com.br/wp-content/uploads/2018/03/maxresdefault.jpg" alt="" uk-cover>
+                    </li>
+                </ul>
+        
+                <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+                <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+        
+            </div>
+        
+            <ul class="uk-slideshow-nav uk-dotnav uk-flex-center uk-margin"></ul>
+        
+        </div>
+    </div>
+
+    <div class="uk-section-secondary uk-navbar-blue uk-flex uk-flex-center">
+            <div class="uk-card uk-card-secondary uk-card-body">Copyright Sysprepi - Todos os Direitos Reservados</div>
+            <div class="uk-card uk-card-secondary uk-card-body uk-margin-left"><i class="fab fa-facebook-f"></i></div>
+            <div class="uk-card uk-card-secondary uk-card-body uk-margin-left"><i class="fab fa-instagram"></i></div>
+            <div class="uk-card uk-card-secondary uk-card-body uk-margin-left"><i class="fab fa-whatsapp"></i></div>
+    </div>
+
+</div>
+
+{% endblock %}

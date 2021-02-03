@@ -1,0 +1,97 @@
+{% extends "header.html" %}
+
+{% block body %}
+
+<div class="uk-container uk-container-large">
+
+    <nav class="uk-section-secondary uk-navbar uk-preserve-color">
+        <div class="uk-navbar-center">
+            <div class="uk-button-group">
+                <ul class="uk-navbar-nav">
+                    <a href="index-socio">
+                        <button class="uk-button uk-button-large uk-button-secondary uk-active">SYSPREPI - Sistema da
+                            Associação de Pacientes Renais do Piauí</button>
+                    </a>
+
+                    <a href="/perfil-socio">
+                        <button class="uk-button uk-button-large uk-button-secondary">Meus Dados</button>
+                    </a>
+                    <a href="/login">
+                        <button class="uk-button uk-button-large uk-button-secondary">Sair da Conta</button>
+                    </a>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="uk-child-width-1-1@s uk-container-small uk-margin-auto  uk-margin-xlarge" uk-grid>
+
+        <table class="uk-table uk-table-striped uk-table-hover">
+            <thead>
+                <tr>
+                    <th>Campo</th>
+                    <th>Valor</th>
+                    <th>Atualizar</th>
+
+                </tr>
+            </thead>
+            <tbody>
+               <form action="">
+                <tr>
+                    <th>Nome</th>
+                    <td>José Roberto</td>
+                    <td><input class="uk-input" type="text" name="" id=""></td>
+
+                </tr>
+                <tr>
+                    <th>Idade</th>
+                    <td>45</td>
+                    <td><input class="uk-input" type="text" name="" id=""></td>
+
+                </tr>
+                <tr>
+                    <th>Cidade</th>
+                    <td>Altos-PI</td>
+                    <td><input class="uk-input" type="text" name="" id=""></td>
+
+                </tr>
+                <tr>
+                    <th>Telefone</th>
+                    <td>(86) 99999-8888</td>
+                    <td><input class="uk-input" type="text" name="" id=""></td>
+
+                </tr>
+                <tr>
+                    <th>E-mail</th>
+                    <td>joseroberto@gmail.com</td>
+                    <td><input class="uk-input" type="text" name="" id=""></td>
+
+                </tr>
+                <tr>
+                    <th>Tratamento</th>
+                    <td>Insuficiência renal crônica</td>
+                    <td><input class="uk-input" type="text" name="" id=""></td>
+
+                </tr>
+                <tr>
+                    <th>Atualizar</th>
+                    <td></td>
+                    <td><input class="uk-button uk-button-primary uk-width-1-1"  type="button" value="Atualizar">
+                    </td>
+
+                </tr>
+
+            </form> 
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}

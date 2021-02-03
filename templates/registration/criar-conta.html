@@ -1,0 +1,89 @@
+{% extends "header.html" %}
+{% block body %}
+<div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
+    <div class="uk-width-1-1">
+        <div class="uk-container">
+            <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
+                <div class="uk-width-1-1@m">
+                    <div
+                        class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+                        <h4 class="uk-card-title uk-text-center">CRIAR CONTA SYSPREPI</h4>
+                        <form>
+                            <div class="uk-margin">
+                                <select class="uk-select">
+                                    <option>Selecione o Tipo de Cadastro</option>
+                                    <option>Sócio</option>
+                                    <option>Benfeitor</option>
+                                    <option>Sócio e Benfeitor</option>
+
+                                </select>
+                            </div>
+                            <div class="uk-margin">
+                                <div class="uk-inline uk-width-1-1">
+                                    <span class="uk-form-icon" uk-icon="icon: user"></span>
+                                    <input class="uk-input uk-form-large" placeholder="Nome Completo" type="text">
+                                </div>
+                            </div>
+                            <div class="uk-margin">
+                                <div class="uk-inline uk-width-1-1">
+                                    <span class="uk-form-icon" uk-icon="icon: heart"></span>
+                                    <input class="uk-input uk-form-large" placeholder="Data de Nascimento" type="text">
+                                </div>
+                            </div>
+
+                            <div class="uk-margin">
+                                <div class="uk-inline uk-width-1-1">
+                                    <span class="uk-form-icon" uk-icon="icon: phone"></span>
+                                    <input class="uk-input uk-form-large" placeholder="Telefone" type="text">
+                                </div>
+                            </div>
+                            <div class="uk-margin">
+                                <div class="uk-inline uk-width-1-1">
+                                    <span class="uk-form-icon" uk-icon="icon: mail"></span>
+                                    <input class="uk-input uk-form-large" placeholder="e-mail" type="text">
+                                </div>
+                            </div>
+                            <div class="uk-margin">
+                                <div class="uk-inline uk-width-1-1">
+                                    <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                                    <input class="uk-input uk-form-large" placeholder="Senha" type="password">
+                                </div>
+                            </div>
+                            <div class="uk-margin">
+                                <div class="uk-inline uk-width-1-1">
+                                    <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                                    <input class="uk-input uk-form-large" placeholder="Confirmar Senha" type="password">
+                                </div>
+                            </div>
+
+                            <div class="uk-margin">
+                                <button
+                                    class="uk-button uk-button-primary uk-button-large uk-width-1-1">Cadastrar</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                    <div class="uk-text-small uk-text-center">
+                        <a href="/">Página Principal</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a class="uk-button uk-button-default" href="#modal-center" uk-toggle>Modal</a>
+<div id="modal-center" class="uk-flex-top" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <p>
+            <span uk-icon="icon: check; ratio: 2"></span>
+            Solicitação de Cadastro Realizada!
+            Você receberá um SMS quando sua solicitação for aprovada.
+        </p>
+        <a href="/"><button class="uk-button uk-button-primary">Página Principal</button></a>
+    </div>
+</div>
+
+{% endblock %}

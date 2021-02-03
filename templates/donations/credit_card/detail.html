@@ -1,0 +1,20 @@
+
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Cartão de Crédito #{{credit_card.id}}</h5>
+    </div>
+    <div class="card-body">
+    <dl class="row">
+      <dt class="col-sm-3">Número</dt>
+      <dd class="col-sm-9">{{ credit_card.number }}</dd>
+      <dt class="col-sm-3">Nome</dt>
+      <dd class="col-sm-9">{{ credit_card.cardholder_name }}</dd>
+    </dl>
+
+    </div>
+</div>
+
+{% endblock content %}
