@@ -85,9 +85,8 @@ class ThankYouView(TemplateView):
 
 
 class CreditCardCreateView(LoginRequiredMixin, CreateView):
-    model = CreditCard
     template_name = 'donations/credit_card/create.html'
-    form = CreditCardForm
+    form_class = CreditCardForm
     success_url = reverse_lazy('donations:list-cc')
 
     def form_valid(self, form):
