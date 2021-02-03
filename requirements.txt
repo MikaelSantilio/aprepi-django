@@ -4,3 +4,5 @@ Django==3.1.5
 django-extensions==3.1.0
 # Flake8
 flake8==3.8.4
+# Widget Tweaks
+ django-widget-tweaks==1.4.8
