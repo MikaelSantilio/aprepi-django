@@ -1,14 +1,71 @@
-{% extends "base.html" %}
-
-{% block content %}
-
-<form method="post" action="{% url 'users:signup-benefactor' %}">
+{% extends "form_base.html" %}
+{% load widget_tweaks %}
+{% block form_title %}CADASTRO BENFEITOR{% endblock form_title %}
+{% block form_container %}
+<form method="post" action="{% block form_url %} {{ form_action }} {% endblock form_url %}">
     {% csrf_token %}
-    {% if member_form %}
-        {{ member_form }}
-    {% endif %}
-    {{ user_form }}
-    {{ profile_form.as_p }}
-    <input type="submit" value="Cadastrar-se">
+    <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            {{ user_form.username|add_class:"uk-input uk-form-large"|attr:"placeholder:Usuário" }}
+        </div>
+    </div>
+    <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+            <span class="uk-form-icon" uk-icon="icon: file-text"></span>
+            {{ user_form.first_name|add_class:"uk-input uk-form-large"|attr:"placeholder:Primeiro nome" }}
+        </div>
+    </div>
+    <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+            <span class="uk-form-icon" uk-icon="icon: file-text"></span>
+            {{ user_form.last_name|add_class:"uk-input uk-form-large"|attr:"placeholder:Último nome" }}
+        </div>
+    </div>
+    <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            {{ profile_form.cpf|add_class:"uk-input uk-form-large"|attr:"placeholder:CPF (apenas números)" }}
+        </div>
+    </div>
+    <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+            <span class="uk-form-icon" uk-icon="icon: heart"></span>
+            {{ profile_form.birth_date|add_class:"uk-input uk-form-large"|attr:"placeholder:Data de nascimento"|attr:"type:date" }}
+        </div>
+    </div>
+
+    <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+            <span class="uk-form-icon" uk-icon="icon: phone"></span>
+            {{ profile_form.phone_number|add_class:"uk-input uk-form-large"|attr:"placeholder:Telefone" }}
+        </div>
+    </div>
+    <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+            <span class="uk-form-icon" uk-icon="icon: mail"></span>
+            {{ user_form.email|add_class:"uk-input uk-form-large"|attr:"placeholder:Email"|attr:"type:email" }}
+        </div>
+    </div>
+
+    {% block extra_form %}{% endblock extra_form %}
+
+    <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+            <span class="uk-form-icon" uk-icon="icon: lock"></span>
+            {{ user_form.password1|add_class:"uk-input uk-form-large"|attr:"placeholder:Senha"|attr:"type:password" }}
+        </div>
+    </div>
+    <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+            <span class="uk-form-icon" uk-icon="icon: lock"></span>
+            {{ user_form.password2|add_class:"uk-input uk-form-large"|attr:"placeholder:Senha"|attr:"type:password" }}
+        </div>
+    </div>
+
+    <div class="uk-margin">
+        <button
+            type="submit" class="uk-button uk-button-primary uk-button-large uk-width-1-1">Cadastrar</button>
+    </div>
 </form>
-{% endblock content %}
+{% endblock form_container %}

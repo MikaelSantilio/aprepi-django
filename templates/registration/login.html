@@ -1,4 +1,5 @@
 {% extends "header.html" %}
+{% load widget_tweaks %}
 {% block body %}
 
     <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
@@ -8,21 +9,32 @@
                     <div class="uk-width-1-1@m">
                         <div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
                             <h4 class="uk-card-title uk-text-center">FAZER LOGIN SYSPREPI</h4>
-                            <form>
+                            {% if form.errors %}
+                            {% for key, value in form.errors.items %}
+                                {% for v in value %}
+                                <div class="uk-alert-warning" uk-alert>
+                                    <a class="uk-alert-close" uk-close></a>
+                                    <p>{{ v }}</p>
+                                </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% endif %}
+                            <form method="post" action="{% url 'users:login' %}" >
+                                {% csrf_token %}
                                 <div class="uk-margin">
                                     <div class="uk-inline uk-width-1-1">
-                                        <span class="uk-form-icon" uk-icon="icon: mail"></span>
-                                        <input class="uk-input uk-form-large" placeholder="e-mail" type="text">
+                                        <span class="uk-form-icon" uk-icon="icon: user"></span>
+                                        {{ form.username|add_class:"uk-input uk-form-large"|attr:"placeholder:Usuário" }}
                                     </div>
                                 </div>
                                 <div class="uk-margin">
                                     <div class="uk-inline uk-width-1-1">
                                         <span class="uk-form-icon" uk-icon="icon: lock"></span>
-                                        <input class="uk-input uk-form-large" placeholder="senha" type="password">	
+                                        {{ form.password|add_class:"uk-input uk-form-large"|attr:"placeholder:Senha"|attr:"type:password" }}
                                     </div>
                                 </div>
                                 <div class="uk-margin">
-                                    <button class="uk-button uk-button-primary uk-button-large uk-width-1-1">Login</button>
+                                    <button type="submit" class="uk-button uk-button-primary uk-button-large uk-width-1-1">Login</button>
                                 </div>
                                 <div class="uk-text-small uk-text-center">
                                     Não Tem Cadastro? <a href="criar-conta">Criar uma conta</a>
@@ -38,4 +50,4 @@
             </div>
         </div>
     </div>
-    {% endblock %}
+{% endblock %}

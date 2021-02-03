@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Third-party APPs
     'django_extensions',
+    'widget_tweaks',
     # Project APPs
     'users',
     'donations',
@@ -131,8 +132,10 @@ MEDIA_URL = "/media/"
 
 AUTH_USER_MODEL = "users.User"
 
-LOGIN_REDIRECT_URL = "core:home"
+LOGIN_REDIRECT_URL = "core:dashboard"
+LOGOUT_REDIRECT_URL = "core:home"
 
 LOGIN_URL = "users:login"
+LOGOUT_URL = "users:logout"
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'

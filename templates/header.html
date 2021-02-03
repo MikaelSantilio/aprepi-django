@@ -19,6 +19,17 @@
 </head>
 
 <body>
+    
+    {% if messages %}
+        {% for message in messages %}
+            
+            <div class="{% if message.tags %}uk-alert-{{ message.tags }}{% endif %}" uk-alert>
+                <a class="uk-alert-close" uk-close></a>
+                <p>{{ message }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
     {% block body %}
     {% endblock %}
 </body>

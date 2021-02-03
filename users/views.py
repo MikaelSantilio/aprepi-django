@@ -28,7 +28,7 @@ class FormErrorMessageMixin():
 
 class MemberSignUpView(EmployeeRequiredMixin, TemplateResponseMixin, FormErrorMessageMixin, ContextMixin, View):
 
-    template_name = 'registration/signup_form.html'
+    template_name = 'registration/signup_form_member.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -37,6 +37,7 @@ class MemberSignUpView(EmployeeRequiredMixin, TemplateResponseMixin, FormErrorMe
         profile_form = ProfileForm()
 
         context['user_form'] = user_form
+        context['form_action'] = reverse_lazy("users:signup-member")
         context['member_form'] = member_form
         context['profile_form'] = profile_form
 
@@ -87,6 +88,7 @@ class BenefactorSignUpView(TemplateResponseMixin, FormErrorMessageMixin, Context
         user_form = SignUpForm()
         profile_form = ProfileForm()
 
+        context['form_action'] = reverse_lazy("users:signup-benefactor")
         context['user_form'] = user_form
         context['profile_form'] = profile_form
 
@@ -136,6 +138,7 @@ class EmployeeSignUpView(SuperuserRequiredMixin, TemplateResponseMixin, FormErro
         user_form = SignUpForm()
         profile_form = ProfileForm()
 
+        context['form_action'] = reverse_lazy("users:signup-employee")
         context['user_form'] = user_form
         context['profile_form'] = profile_form
 
@@ -175,7 +178,7 @@ class EmployeeSignUpView(SuperuserRequiredMixin, TemplateResponseMixin, FormErro
 
 class VoluntarySignUpView(EmployeeRequiredMixin, TemplateResponseMixin, FormErrorMessageMixin, ContextMixin, View):
 
-    template_name = 'registration/signup_form.html'
+    template_name = 'registration/signup_form_voluntary.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -184,6 +187,7 @@ class VoluntarySignUpView(EmployeeRequiredMixin, TemplateResponseMixin, FormErro
         profile_form = ProfileForm()
 
         context['user_form'] = user_form
+        context['form_action'] = reverse_lazy("users:signup-voluntary")
         context['voluntary_form'] = voluntary_form
         context['profile_form'] = profile_form
 

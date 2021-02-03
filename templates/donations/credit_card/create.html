@@ -1,10 +1,34 @@
-
-{% extends "base.html" %}
-{% block content %}
+{% extends "form_base.html" %}
+{% load widget_tweaks %}
+{% block form_title %}CADASTRO CARTÃO{% endblock form_title %}
+{% block form_container %}
 <form method="post" action="{% url 'donations:create-cc' %}">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Cadastrar">
-</form>
+    <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+            {{ form.number|add_class:"uk-input uk-form-large"|attr:"placeholder:Número do cartão" }}
+        </div>
+    </div>
+    <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+            {{ form.cardholder_name|add_class:"uk-input uk-form-large"|attr:"placeholder:Titular" }}
+        </div>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label">Data de expiração</label>
+        <div class="uk-inline uk-width-1-1">
+            {{ form.expiration|add_class:"uk-input uk-form-large"|attr:"type:date" }}
+        </div>
+    </div>
+    <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+            {{ form.cvv|add_class:"uk-input uk-form-large"|attr:"placeholder:CVV" }}
+        </div>
+    </div>
 
-{% endblock content %}
+    <div class="uk-margin">
+        <button
+            type="submit" class="uk-button uk-button-primary uk-button-large uk-width-1-1">Cadastrar</button>
+    </div>
+</form>
+{% endblock form_container %}

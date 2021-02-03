@@ -11,7 +11,7 @@ class User(AbstractUser):
     is_employee = models.BooleanField(default=False)
 
 
-class ProfileRegistrationData(Base, AddressFields):
+class ProfileRegistrationData(Base):
     user = models.OneToOneField(User, related_name='profile', on_delete=models.CASCADE, primary_key=True)
     cpf = models.CharField("CPF", unique=True, max_length=14, validators=[validate_CPF])
     birth_date = models.DateField()
@@ -23,6 +23,7 @@ class ProfileRegistrationData(Base, AddressFields):
 
 class Member(Base):
     SCHOLARITY_CHOICES = (
+        (None, "---Escolaridade---"),
         ("ANF", "Analfabeto"),
         ("EFI", "Ensino fundamental incompleto"),
         ("EFC", "Ensino fundamental completo"),
@@ -31,6 +32,7 @@ class Member(Base):
         ("ESC", "Superior completo")
     )
     TREATMENT_CHOICES = (
+        (None, "---Tratamento---"),
         ("HM", "Hemodiálise"),
         ("DP", "Diálise Peritoneal"),
         ("TP", "Transplantado")
