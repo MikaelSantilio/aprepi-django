@@ -1,0 +1,80 @@
+{% extends "header.html" %}
+
+{% block body %}
+
+<div class="uk-container uk-container-large">
+
+    <nav class="uk-section-secondary uk-navbar uk-preserve-color">
+        <div class="uk-navbar-center">
+            <div class="uk-button-group">
+                <ul class="uk-navbar-nav">
+                    <a href="index-socio">
+                        <button class="uk-button uk-button-large uk-button-secondary uk-active">SYSPREPI - Sistema da
+                            Associação de Pacientes Renais do Piauí</button>
+                    </a>
+
+                    <a href="/perfil-socio">
+                        <button class="uk-button uk-button-large uk-button-secondary">Meus Dados</button>
+                    </a>
+                    <a href="/login">
+                        <button class="uk-button uk-button-large uk-button-secondary">Sair da Conta</button>
+                    </a>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="uk-child-width-1-1@s uk-container-small uk-margin-auto  uk-margin-xlarge" uk-grid>
+
+        <table class="uk-table uk-table-striped uk-table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Especialidade</th>
+                    <th>Médico</th>
+                    <th>Data</th>
+                    <th>Hora</th>
+                    <th>Local</th>
+                    <th>Desmarcar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Odontologista</td>
+                    <td>Dr. Ribeiro</td>
+                    <td>25/03/2021</td>
+                    <td>8:00</td>
+                    <td>Med Imagem</td>
+                    <td>#</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Odontologista</td>
+                    <td>Dr. Ribeiro</td>
+                    <td>25/03/2021</td>
+                    <td>8:00</td>
+                    <td>Med Imagem</td>
+                    <td>#</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Odontologista</td>
+                    <td>Dr. Ribeiro</td>
+                    <td>25/03/2021</td>
+                    <td>8:00</td>
+                    <td>Med Imagem</td>
+                    <td>#</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}

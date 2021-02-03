@@ -1,0 +1,13 @@
+{% extends "registration/signup_form.html" %}
+{% load widget_tweaks %}
+{% block form_title %}CADASTRO VOLUNTÁRIO{% endblock form_title %}
+{% block extra_form %}
+    
+    <div class="uk-margin">
+        <label class="uk-form-label">Função</label>
+        <div class="uk-inline uk-width-1-1">
+            {{ voluntary_form.function|add_class:"uk-select uk-form-large" }}
+        </div>
+    </div>
+    
+{% endblock extra_form %}

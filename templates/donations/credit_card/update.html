@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="post" action="{% url 'donations:update-cc' %}">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Cadastrar">
+</form>
+
+{% endblock content %}

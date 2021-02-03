@@ -1,0 +1,49 @@
+{% extends "header.html" %}
+
+{% block body %}
+
+<div class="uk-container uk-container-large">
+
+    <nav class="uk-section-secondary uk-navbar uk-preserve-color">
+        <div class="uk-navbar-center">
+            <div class="uk-button-group">
+                <ul class="uk-navbar-nav">
+                    <a href="index-socio">
+                        <button class="uk-button uk-button-large uk-button-secondary uk-active">SYSPREPI - Sistema da
+                            Associação de Pacientes Renais do Piauí</button>
+                    </a>
+                    <a href="/perfil-socio">
+                        <button class="uk-button uk-button-large uk-button-secondary">Meus Dados</button>
+                    </a>
+
+                    <a href="/login">
+                        <button class="uk-button uk-button-large uk-button-secondary">Sair da Conta</button>
+                    </a>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="uk-child-width-1-1@s uk-container-xsmall uk-margin-auto uk-grid-match uk-margin-xlarge" uk-grid>
+
+        <h1>AQUI DEVE FICAR UM IFRAME DO MERCADO PAGO</h1>
+
+    </div>
+
+</div>
+<a class="uk-button uk-button-default" href="#modal-center" uk-toggle>Modal</a>
+<div id="modal-center" class="uk-flex-top" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <p>
+            <span uk-icon="icon: check; ratio: 2"></span>
+            Doação solicitado com sucesso!
+            Você receberá um SMS quando sua doação for aprovada.
+        </p>
+        <a href="index-socio"><button class="uk-button uk-button-primary">Página Principal</button></a>
+    </div>
+</div>
+
+{% endblock %}

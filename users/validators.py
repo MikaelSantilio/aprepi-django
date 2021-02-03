@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 
 validate_phone = RegexValidator(
         regex=r'(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})',
-        message="Phone number must be entered in the format: '99 99999-9999'. Up to 15 digits allowed.")
+        message="O número precisa estar nos formatos '99 99999-9999' ou '99 9999-9999'.")
 
 
 def DV_maker(v):

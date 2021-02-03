@@ -2,17 +2,42 @@ import re
 from django.core.exceptions import ValidationError
 
 
-class FNGCCValidator:
-    message = 'Invalid credit card.'
+def card_validator(value):
+    message = 'Informe um cartão de crédito válido.'
     code = 'invalid'
+
+    validator = FNGCCValidator()
+    card = validator.creditCard(ccnumber=value)
+    if not card:
+        raise ValidationError(message, code=code)
+
+    elif not card['valid']:
+        raise ValidationError(message, code=code)
+
+
+class FNGCCValidator:
+    message = 'Informe um cartão de crédito válido.'
+    code = 'invalid'
+    domain_whitelist = ['localhost']
+
+    def __init__(self, message=None, code=None, whitelist=None):
+        if message is not None:
+            self.message = message
+        if code is not None:
+            self.code = code
+        if whitelist is not None:
+            self.domain_whitelist = whitelist
 
     def __call__(self, value):
         """
         Validate that the input contains (or does *not* contain, if
         inverse_match is True) a match for the regular expression.
         """
-        valid_input = self.creditCard(ccnumber=value)['valid']
+        valid_input = self.creditCard(ccnumber=value)
         if not valid_input:
+            raise ValidationError(self.message, code=self.code)
+
+        elif not valid_input['valid']:
             raise ValidationError(self.message, code=self.code)
 
     def creditCard(self, ccnumber, cardtype='', allowTest=False):

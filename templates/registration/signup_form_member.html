@@ -1,0 +1,56 @@
+{% extends "registration/signup_form.html" %}
+{% load widget_tweaks %}
+{% block form_title %}CADASTRO SÓCIO{% endblock form_title %}
+{% block extra_form %}
+    <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+            <span class="uk-form-icon" uk-icon="icon: file-text"></span>
+            {{ member_form.father_name|add_class:"uk-input uk-form-large"|attr:"placeholder:Nome do pai" }}
+        </div>
+    </div>
+    <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+            <span class="uk-form-icon" uk-icon="icon: file-text"></span>
+            {{ member_form.mother_name|add_class:"uk-input uk-form-large"|attr:"placeholder:Nome da mãe" }}
+        </div>
+    </div>
+    <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+            <span class="uk-form-icon" uk-icon="icon: file-text"></span>
+            {{ member_form.companion_name|add_class:"uk-input uk-form-large"|attr:"placeholder:Nome do acompanhante" }}
+        </div>
+    </div>
+    
+    <div class="uk-margin">
+        <label class="uk-form-label">Clinica onde faz tratamento</label>
+        <div class="uk-inline uk-width-1-1">
+            {{ member_form.clinic|add_class:"uk-select uk-form-large"|attr:"placeholder:Clinica onde faz tratamento" }}
+        </div>
+    </div>
+    
+    <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+            {{ member_form.treatment|add_class:"uk-select uk-form-large"|attr:"placeholder:Tratamento" }}
+        </div>
+    </div>
+    
+    <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+            <label class="uk-form-label">Inicio do tratamento</label>
+            {{ member_form.start_of_treatment|add_class:"uk-input uk-form-large"|attr:"placeholder:Inicio do tratamento"|attr:"type:date" }}
+        </div>
+    </div>
+    
+    <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+            {{ member_form.scholarity|add_class:"uk-select uk-form-large"|attr:"placeholder:Escolaridade" }}
+        </div>
+    </div>
+    
+    <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+            <label class="uk-form-label">Renda</label>
+            {{ member_form.rent|add_class:"uk-input uk-form-large"|attr:"placeholder:Renda"}}
+        </div>
+    </div>
+{% endblock extra_form %}
