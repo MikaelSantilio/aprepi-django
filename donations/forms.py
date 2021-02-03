@@ -9,11 +9,12 @@ class DonationForm(RequestKwargModelFormMixin, forms.ModelForm):
         model = Donation
         fields = ('donated_value', 'method')
 
-        # def clean(self):
-        #     cleaned_data = super().clean()
-        #     self.cleaned_data["benefactor"] = self.request.user.pk
-        #     cleaned_data["benefactor"] = self.request.user.pk
-        #     return cleaned_data
+        def clean(self):
+            cleaned_data = super().clean()
+            self.request.user.pk
+            self.request.user
+            cleaned_data["benefactor"] = self.request.user.pk
+            return cleaned_data
 
         # def save(self):
         #     method = self.cleaned_data.get('method')
