@@ -14,57 +14,6 @@ from users.forms import (BenefactorSignUpForm, MemberForm, MemberSignUpForm,
 
 User = get_user_model()
 
-
-# @transaction.atomic
-# def register_benefactor(request):
-#     if request.method == 'POST':
-#         user_form = BenefactorSignUpForm(request.POST)
-#         profile_form = ProfileRegistrationDataSignUpForm(request.POST)
-#         if user_form.is_valid() and profile_form.is_valid():
-#             user = user_form.save(commit=False)
-#             user.save()
-#             user.refresh_from_db()
-#             profile_form = ProfileRegistrationDataSignUpForm(
-#                 request.POST, instance=user.profile)
-#             profile_form.full_clean()
-#             profile_form.save()
-#             messages.success(
-#                 request, 'Conta criada com sucesso, faça login para continuar')
-#             return HttpResponseRedirect(reverse_lazy('core:home'))
-#         else:
-#             messages.error(request, 'Erro ao criar sua conta')
-#     else:
-#         user_form = BenefactorSignUpForm()
-#         profile_form = ProfileRegistrationDataSignUpForm()
-#     return render(request, 'registration/signup_form.html', {'user_form': user_form, 'profile_form': profile_form})
-
-
-# @transaction.atomic
-# def register_member(request):
-#     if request.method == 'POST':
-#         user_form = BenefactorSignUpForm(request.POST)
-#         profile_form = ProfileRegistrationDataSignUpForm(request.POST)
-#         if user_form.is_valid() and profile_form.is_valid():
-#             user = user_form.save(commit=False)
-#             user.save()
-#             user.refresh_from_db()
-#             profile_form = ProfileRegistrationDataSignUpForm(
-#                 request.POST, instance=user.profile)
-#             profile_form.full_clean()
-#             profile_form.save()
-#             messages.success(
-#                 request, 'Conta criada com sucesso, faça login para continuar')
-#             return HttpResponseRedirect(reverse_lazy('core:home'))
-#         else:
-#             messages.error(request, 'Erro ao criar sua conta')
-#     else:
-#         user_form = MemberSignUpForm()
-#         member_form = MemberForm()
-#         profile_form = ProfileRegistrationDataSignUpForm()
-#     return render(request, 'registration/signup_form.html',
-#                   {'user_form': user_form, 'profile_form': profile_form, 'member_form': member_form})
-
-
 class MemberSignUpView(EmployeeRequiredMixin, TemplateResponseMixin, ContextMixin, View):
 
     template_name = 'registration/signup_form.html'

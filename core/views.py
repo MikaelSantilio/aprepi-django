@@ -29,4 +29,4 @@ class RequestFormKwargsMixin(object):
 
 class HomeView(TemplateView):
 
-    template_name = "core/home.html"
+    template_name = "core/index.html"
