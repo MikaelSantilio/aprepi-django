@@ -1,0 +1,21 @@
+<nav class="uk-section-secondary uk-navbar uk-preserve-color">
+    <div class="uk-navbar-center">
+        <div class="uk-button-group">
+            <ul class="uk-navbar-nav">
+                <a href="{% url 'core:dashboard' %}">
+                    <button class="uk-button uk-button-large uk-button-secondary uk-active">SYSPREPI - Sistema da
+                        Associação de Pacientes Renais do Piauí</button>
+                </a>
+
+                <a href="{% url 'users:profile-detail' %}">
+                    <button class="uk-button uk-button-large uk-button-secondary">Meus Dados</button>
+                </a>
+                <a href="{% url 'users:logout' %}">
+                    <button class="uk-button uk-button-large uk-button-secondary">Sair da Conta</button>
+                </a>
+
+            </ul>
+
+        </div>
+    </div>
+</nav>

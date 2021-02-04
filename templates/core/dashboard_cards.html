@@ -1,0 +1,12 @@
+<div class="uk-child-width-1-2@s uk-grid-match uk-margin-xlarge" uk-grid>
+{% for card in cards %}
+<div>
+    <div class="uk-card uk-card-primary uk-card-hover uk-card-body">
+        <a href="{{ card.url }}">
+            <h3 class="uk-card-title">{{ card.title }}</h3>
+        </a>
+        <p>{{ card.text }}</p>
+    </div>
+</div>
+{% endfor %}
+</div>

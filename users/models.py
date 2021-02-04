@@ -10,6 +10,24 @@ class User(AbstractUser):
     is_voluntary = models.BooleanField(default=False)
     is_employee = models.BooleanField(default=False)
 
+    def get_member_profile(self):
+        member_profile = None
+        if hasattr(self, 'member'):
+            member_profile = self.member
+        return member_profile
+
+    def get_voluntary_profile(self):
+        voluntary_profile = None
+        if hasattr(self, 'voluntary'):
+            voluntary_profile = self.voluntary
+        return voluntary_profile
+
+    def get_profile(self):
+        profile = None
+        if hasattr(self, 'profile'):
+            profile = self.profile
+        return profile
+
 
 class ProfileRegistrationData(Base):
     user = models.OneToOneField(User, related_name='profile', on_delete=models.CASCADE, primary_key=True)

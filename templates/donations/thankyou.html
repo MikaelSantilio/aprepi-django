@@ -1,5 +1,21 @@
+{% extends "core/dashboard.html" %}
 
-{% extends "base.html" %}
-{% block content %}
-<h1>Obrigado por sua contribuição!</h1>
-{% endblock content %}
+{% block dashboard_content %}
+
+
+<div style="padding-top: 160px; padding-bottom: 20px; width: 60%; text-align: center; margin: auto;" >
+    {% if status == "pending" %}
+        <p style="font-size: 40px; font-weight: bold;" >Obrigado por sua doação!<br> Seu pagamento está sendo processado.</p>
+    {% elif status == "success" %}
+        <p style="font-size: 40px; font-weight: bold;" >Obrigado por sua doação!<br> Seu pagamento foi aprovado.</p>
+    {% elif status == "failure" %}
+        <p style="font-size: 40px; font-weight: bold;" >Ops, ocorreu um erro com seu pagamento.</p>
+    {% else %}
+        <p style="font-size: 40px; font-weight: bold;" >Ops, ocorreu um erro com seu pagamento.</p>
+    {% endif %}
+</div>
+<div style="text-align: center; width: 60%; margin: auto;" >
+    <a class="uk-button uk-button-primary uk-button-large" href="{% url 'core:dashboard' %}">Voltar ao Dashboard</a>
+</div>
+{% endblock dashboard_content %}
+    

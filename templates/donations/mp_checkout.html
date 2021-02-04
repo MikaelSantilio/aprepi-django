@@ -1,0 +1,18 @@
+{% extends "core/dashboard.html" %}
+
+{% block dashboard_content %}
+
+
+<div>
+    <h1>Conclua o pagamento da doação de R$ 50,00</h1>
+</div>
+<div style="padding-right: 45px; width: 20%; margin: auto;" >
+    <script
+    src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
+    data-preference-id="{{ preference_id }}">
+    </script>
+    <!-- <a href="{{ init_point }}">Pagar com Mercado Pago</a> -->
+    <!-- <a class="uk-button uk-button-primary uk-button-large" href="{{ init_point }}">Pagar com Mercado Pago</a> -->
+</div>
+{% endblock dashboard_content %}
+    

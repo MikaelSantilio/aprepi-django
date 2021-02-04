@@ -1,6 +1,9 @@
 from django.shortcuts import render
-from django.views.generic.edit import View
-from django.views.generic import CreateView, TemplateView, DeleteView, ListView, DetailView, UpdateView
+from core import mercadopago
+from django.conf import settings
+
+from django.views.generic.base import ContextMixin
+from django.views.generic import CreateView, TemplateView, DeleteView, ListView, DetailView, UpdateView, View
 from donations.forms import DonationForm, CreditCardForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
@@ -33,26 +36,20 @@ class MakeDonation(LoginRequiredMixin, CreateView):
         benefactor = get_object_or_404(Benefactor, pk=self.request.user)
         form.instance.benefactor = benefactor
 
-        method = form.instance.method
+        method = "CREDIT"
+        form.instance.method = method
+        donated_value = form.instance.donated_value
 
-        form.instance.status = self.get_donation_status(method, benefactor)
+        form.instance.status = "approved"
 
         if method == "RCREDIT":
             RecurringDonation.objects.create(benefactor=benefactor, donated_value=form.instance.donated_value)
 
         form.save()
 
-        return HttpResponseRedirect(reverse_lazy('donations:thankyou'))
+        init_point = self.get_preference_id(donated_value)
 
-    def get_donation_status(self, method, benefactor):
-        # Regras de cobrança
-        # if method == "CREDIT":
-        #     credit_card = benefactor.get_valid_credit_card()
-
-        # elif method == "RCREDIT":
-        #     credit_card = benefactor.get_valid_credit_card()
-
-        return "approved"
+        return HttpResponseRedirect(init_point)
 
     def get(self, request, *args, **kwargs):
         if not request.user.is_benefactor:
@@ -60,13 +57,81 @@ class MakeDonation(LoginRequiredMixin, CreateView):
             return HttpResponseRedirect(reverse_lazy('core:home'))
         return super(MakeDonation, self).get(request, *args, **kwargs)
 
+    def get_preference_id(self, value):
 
-# class MakeRecurringDonation(View):
-#     pass
+        mp = mercadopago.MP("TEST-2080322467425948-112319-5e9a6ec9ee2cd42e454effe88a1d17e9-489237696")
+
+        preference = {
+            "items": [
+                {
+                    "title": "Doacao",
+                    "quantity": 1,
+                    "currency_id": "BRL",
+                    "unit_price": float(value)
+                }
+            ],
+            "back_urls": {
+                "success": str(self.request.build_absolute_uri(reverse_lazy("donations:thankyou"))),
+                "pending": str(self.request.build_absolute_uri(reverse_lazy("donations:pending"))),
+                "failure": str(self.request.build_absolute_uri(reverse_lazy("donations:failure")))
+            }
+        }
+
+        obj = mp.create_preference(preference)
+
+        obj = mp.create_preference(preference)
+        return obj['response']['init_point']
 
 
-# class MakeAnonymousDonation(View):
-#     pass
+class MPCheckout(LoginRequiredMixin, TemplateView):
+    template_name = 'donations/mp_checkout.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['preference_id'] = self.get_preference_id(self.kwargs.get('value'))[0]
+        context['init_point'] = self.get_preference_id(self.kwargs.get('value'))[1]
+        return context
+
+    def get(self, request, value, *args, **kwargs):
+        if not self.check_float(value):
+            messages.add_message(request, messages.WARNING, 'Um erro ocorreu. Tente novamente mais tarde.')
+            return HttpResponseRedirect(reverse_lazy('core:dashboard'))
+        return super().get(request, *args, **kwargs)
+
+    def check_float(self, potential_float):
+        try:
+            float(potential_float)
+
+            return True
+        except ValueError:
+            return False
+
+    def get_preference_id(self, value):
+        if not self.check_float(value):
+            return None
+
+        mp = mercadopago.MP(settings.TOKEN_MERCADO_PAGO)
+
+        preference = {
+            "items": [
+                {
+                    "title": "Doacao",
+                    "quantity": 1,
+                    "currency_id": "BRL",
+                    "unit_price": float(value)
+                }
+            ],
+            "back_urls": {
+                "success": str(self.request.build_absolute_uri(reverse_lazy("donations:thankyou"))),
+                "pending": str(self.request.build_absolute_uri(reverse_lazy("donations:thankyou"))),
+                "failure": str(self.request.build_absolute_uri(reverse_lazy("donations:thankyou")))
+            }
+        }
+
+        obj = mp.create_preference(preference)
+
+        obj = mp.create_preference(preference)
+        return [obj['response']['id'], obj['response']['init_point']] 
 
 
 class CreditCardByUserMixin():
@@ -82,6 +147,12 @@ class CreditCardByUserMixin():
 class ThankYouView(TemplateView):
 
     template_name = "donations/thankyou.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        print(self.request.GET.get('status'))
+        context['status'] = self.request.GET.get('status')
+        return context
 
 
 class CreditCardCreateView(LoginRequiredMixin, CreateView):
