@@ -34,9 +34,8 @@ $ pip install -r requirements.txt
 export DEBUG=True
 export TOKEN_MERCADO_PAGO=<TOKEN_MERCADO_PAGO>
 ```
-> **Para ajudar com as configurações das variáveis de ambiente, você tem algumas opções**:
-> - Crie um arquivo `.env` na raíz do seu projeto e defina todas as variáveis necessárias dentro dele. Então você so precisa ter `DJANGO_READ_DOT_ENV_FILE=True` em sua máquina e todas as variáveis serão lidas.
-> - Use um gerenciador de ambientes como o [direnv](https://direnv.net/)
+> **Para ajudar com as configurações das variáveis de ambiente, você pode:**:
+> - Usar um gerenciador de ambientes como o [direnv](https://direnv.net/)
 
 > **Para obter um token válido do Mercado Pago acesse o link:**
 > - https://www.mercadopago.com.br/settings/account/credentials
