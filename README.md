@@ -37,9 +37,10 @@ export TOKEN_MERCADO_PAGO=<TOKEN_MERCADO_PAGO>
 > **Para ajudar com as configurações das variáveis de ambiente, você tem algumas opções**:
 > - Crie um arquivo `.env` na raíz do seu projeto e defina todas as variáveis necessárias dentro dele. Então você so precisa ter `DJANGO_READ_DOT_ENV_FILE=True` em sua máquina e todas as variáveis serão lidas.
 > - Use um gerenciador de ambientes como o [direnv](https://direnv.net/)
-> **Para obter um token válido do Mercado Pago acesse o link**
-> https://www.mercadopago.com.br/settings/account/credentials
-> OBS: O token utilizado pode ser o de testes 
+
+> **Para obter um token válido do Mercado Pago acesse o link:**
+> - https://www.mercadopago.com.br/settings/account/credentials
+> - O token utilizado pode ser o de testes 
 
 6. Execute as migrações:
 ```shell
