@@ -1,0 +1,68 @@
+{% extends "core/dashboard.html" %}
+{% load humanize %}
+{% load widget_tweaks %}
+{% block dashboard_content %}
+
+<div class="uk-child-width-1-1@s uk-container-small uk-margin-auto  uk-margin-xlarge" uk-grid>
+
+    <table class="uk-table uk-table-striped uk-table-hover">
+        <thead>
+            <tr>
+                <th>Campo</th>
+                <th>Valor</th>
+                <th>Atualizar</th>
+
+            </tr>
+        </thead>
+        <tbody>
+           <form action="">
+            {% for field in user_form %}
+                {{ field.name }}
+            {% endfor %}
+            <tr>
+                <th>Usuário</th>
+                <td>{{ user_obj.username }}</td>
+                <td>{{ user_form.username|add_class:"uk-input" }}</td>
+            </tr>
+            <tr>
+                <th>Primeiro nome</th>
+                <td>{{ user_obj.first_name }}</td>
+                <td>{{ user_form.first_name|add_class:"uk-input" }}</td>
+            </tr>
+            <tr>
+                <th>Último nome</th>
+                <td>{{ user_obj.last_name }}</td>
+                <td>{{ user_form.last_name|add_class:"uk-input" }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user_obj.email }}</td>
+                <td>{{ user_form.email|add_class:"uk-input" }}</td>
+            </tr>
+            <tr>
+                <th>Telefone</th>
+                <td>{{ profile_obj.phone_number }}</td>
+                <td>{{ profile_form.phone_number|add_class:"uk-input" }}</td>
+            </tr>
+
+            <tr>
+                <th>Tratamento</th>
+                <td>Insuficiência renal crônica</td>
+                <td><input class="uk-input" type="text" name="" id=""></td>
+
+            </tr>
+            <tr>
+                <th>Atualizar</th>
+                <td></td>
+                <td><input class="uk-button uk-button-primary uk-width-1-1"  type="button" value="Atualizar">
+                </td>
+
+            </tr>
+
+        </form> 
+        </tbody>
+
+    </table>
+
+</div>
+{% endblock dashboard_content %}

@@ -1,17 +1,24 @@
 from django.db import models
 from users.models import Base, Voluntary
+from donations.models import Donation
 
 
 class Event(Base):
     event_name = models.CharField('Nome do Evento', max_length=150, blank=True, null=True)
-    date_event = models.DateTimeField()
+    start_date = models.DateField()
+    end_date = models.DateField(null=True, blank=True)
 
     volunteers = models.ManyToManyField(
         Voluntary,
+        null=True,
+        blank=True,
         verbose_name='volunteers',
-        related_name="evento_set",)
-    event_details = models.TextField()
-    materials = models.TextField()
+        related_name="event_set")
+    event_details = models.TextField(blank=True, null=True)
+    materials = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.event_name
 
 
 class Cost(Base):
@@ -22,6 +29,9 @@ class Cost(Base):
         verbose_name='event',
         related_name="cost_set",)
 
+    def __str__(self):
+        return f"{self.event.event_name} - R$ {self.cost:.2f}"
+
 
 class Collection(Base):
     collection = models.FloatField('R$0.00')
@@ -30,3 +40,14 @@ class Collection(Base):
         Event,
         verbose_name='event',
         related_name="collection_set",)
+
+    def __str__(self):
+        return f"{self.event.event_name} - R$ {self.collection:.2f}"
+
+
+class EventDonation(Donation):
+
+    event = models.ForeignKey(Event, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return f"Donation {self.benefactor.user}"

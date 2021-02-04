@@ -16,7 +16,7 @@ from users.models import Benefactor
 from donations.models import Donation, RecurringDonation
 from django.contrib import messages
 from donations.models import CreditCard
-
+from events.models import EventDonation
 from django.urls import reverse_lazy
 
 
@@ -29,6 +29,7 @@ class MakeDonation(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['is_benefactor'] = self.request.user.is_benefactor
         context['form'] = self.form_class
+        context['form_title'] = "FAZER DOAÇÃO"
         return context
 
     def form_valid(self, form):
@@ -47,7 +48,7 @@ class MakeDonation(LoginRequiredMixin, CreateView):
 
         form.save()
 
-        init_point = self.get_preference_id(donated_value)
+        init_point = self.get_preference_id(donated_value, "Doação APREPI")
 
         return HttpResponseRedirect(init_point)
 
@@ -57,14 +58,14 @@ class MakeDonation(LoginRequiredMixin, CreateView):
             return HttpResponseRedirect(reverse_lazy('core:home'))
         return super(MakeDonation, self).get(request, *args, **kwargs)
 
-    def get_preference_id(self, value):
+    def get_preference_id(self, value, title):
 
-        mp = mercadopago.MP("TEST-2080322467425948-112319-5e9a6ec9ee2cd42e454effe88a1d17e9-489237696")
+        mp = mercadopago.MP(settings.TOKEN_MERCADO_PAGO)
 
         preference = {
             "items": [
                 {
-                    "title": "Doacao",
+                    "title": title,
                     "quantity": 1,
                     "currency_id": "BRL",
                     "unit_price": float(value)
@@ -72,8 +73,8 @@ class MakeDonation(LoginRequiredMixin, CreateView):
             ],
             "back_urls": {
                 "success": str(self.request.build_absolute_uri(reverse_lazy("donations:thankyou"))),
-                "pending": str(self.request.build_absolute_uri(reverse_lazy("donations:pending"))),
-                "failure": str(self.request.build_absolute_uri(reverse_lazy("donations:failure")))
+                "pending": str(self.request.build_absolute_uri(reverse_lazy("donations:thankyou"))),
+                "failure": str(self.request.build_absolute_uri(reverse_lazy("donations:thankyou")))
             }
         }
 
@@ -174,7 +175,12 @@ class DonationListView(LoginRequiredMixin, ListView):
     template_name = 'donations/list.html'
 
     def get_queryset(self):
-        return Donation.objects.filter(benefactor__pk=self.request.user.pk)
+        return Donation.objects.filter(benefactor__pk=self.request.user.pk).order_by('-created_at')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['event_donation_list'] = EventDonation.objects.filter(benefactor__pk=self.request.user.pk).order_by('-created_at')
+        return context
 
 
 class CreditCardListView(LoginRequiredMixin, ListView):

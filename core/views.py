@@ -64,7 +64,17 @@ class DashboardView(LoginRequiredMixin, TemplateView):
                     "url": reverse("users:signup-member"),
                     "title": "Cadastrar Sócio",
                     "text": ""
-                }
+                },
+                {
+                    "url": reverse("events:list"),
+                    "title": "Listagem de eventos",
+                    "text": ""
+                },
+                {
+                    "url": reverse("events:create"),
+                    "title": "Criar novo evento",
+                    "text": ""
+                },
             ]
 
         if self.request.user.is_benefactor:
@@ -78,6 +88,11 @@ class DashboardView(LoginRequiredMixin, TemplateView):
                     "url": reverse("donations:list"),
                     "title": "Verificar doações feitas",
                     "text": "Verifique o histórico de todas as suas doações feitas."
+                },
+                {
+                    "url": reverse("events:donation"),
+                    "title": "Fazer doação para evento",
+                    "text": "Faça uma doação paras um dos eventos da nossa instituição."
                 },
             ]
 

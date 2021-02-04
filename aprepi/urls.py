@@ -7,4 +7,5 @@ urlpatterns = [
     path('doacao/', include('donations.urls', namespace='donations')),
     path('', include('core.urls')),
     path('conta/', include('users.urls', namespace='users')),
+    path('evento/', include('events.urls', namespace='events')),
 ]
