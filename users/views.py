@@ -109,7 +109,7 @@ class BenefactorSignUpView(TemplateResponseMixin, FormErrorMessageMixin, Context
             return self.render_to_response(self.get_context_data())
 
     def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
+        if request.user.is_authenticated and not (request.user.is_employee or request.user.is_superuser):
             return HttpResponseRedirect(reverse_lazy('core:home'))
         return self.render_to_response(self.get_context_data())
 

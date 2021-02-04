@@ -22,13 +22,14 @@
     </div>
     
     <div class="uk-margin">
-        <label class="uk-form-label">Clinica onde faz tratamento</label>
+        <label class="uk-label uk-label-primary uk-margin-small-bottom">Clinica onde faz tratamento</label>
         <div class="uk-inline uk-width-1-1">
             {{ member_form.clinic|add_class:"uk-select uk-form-large"|attr:"placeholder:Clinica onde faz tratamento" }}
         </div>
     </div>
     
     <div class="uk-margin">
+        <label class="uk-label uk-label-primary uk-margin-small-bottom">Tipo de tratamento</label>
         <div class="uk-inline uk-width-1-1">
             {{ member_form.treatment|add_class:"uk-select uk-form-large"|attr:"placeholder:Tratamento" }}
         </div>
@@ -36,12 +37,13 @@
     
     <div class="uk-margin">
         <div class="uk-inline uk-width-1-1">
-            <label class="uk-form-label">Inicio do tratamento</label>
+            <label class="uk-label uk-label-primary uk-margin-small-bottom">Inicio do tratamento</label>
             {{ member_form.start_of_treatment|add_class:"uk-input uk-form-large"|attr:"placeholder:Inicio do tratamento"|attr:"type:date" }}
         </div>
     </div>
     
     <div class="uk-margin">
+        <label class="uk-label uk-label-primary uk-margin-small-bottom">Escolaridade</label>
         <div class="uk-inline uk-width-1-1">
             {{ member_form.scholarity|add_class:"uk-select uk-form-large"|attr:"placeholder:Escolaridade" }}
         </div>
@@ -49,7 +51,7 @@
     
     <div class="uk-margin">
         <div class="uk-inline uk-width-1-1">
-            <label class="uk-form-label">Renda</label>
+            <label class="uk-label uk-label-primary uk-margin-small-bottom">Renda</label>
             {{ member_form.rent|add_class:"uk-input uk-form-large"|attr:"placeholder:Renda"}}
         </div>
     </div>

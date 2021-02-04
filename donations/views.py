@@ -168,6 +168,15 @@ class CreditCardCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
+class DonationListView(LoginRequiredMixin, ListView):
+
+    model = Donation
+    template_name = 'donations/list.html'
+
+    def get_queryset(self):
+        return Donation.objects.filter(benefactor__pk=self.request.user.pk)
+
+
 class CreditCardListView(LoginRequiredMixin, ListView):
 
     model = CreditCard

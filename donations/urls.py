@@ -5,6 +5,7 @@ app_name = "donations"
 
 urlpatterns = [
     path('', views.MakeDonation.as_view(), name='unique-donation'),
+    path('historico/', views.DonationListView.as_view(), name='list'),
     # path('checkout/<str:value>', views.MPCheckout.as_view(), name='mp-checkout'),
     # path('anonima/', views.MakeAnonymousDonation.as_view(), name='anonymous-donation'),
     # path('recorrente/', views.MakeRecurringDonation.as_view(), name='recurring-donation'),
