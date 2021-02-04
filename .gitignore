@@ -1,4 +1,5 @@
 # Bulk City, State files
+.envrc
 cidades*
 estados*
 cidades.txt

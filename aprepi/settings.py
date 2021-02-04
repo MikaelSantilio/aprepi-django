@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -139,3 +140,6 @@ LOGIN_URL = "users:login"
 LOGOUT_URL = "users:logout"
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+
+TOKEN_MERCADO_PAGO = str(os.getenv('TOKEN_MERCADO_PAGO'))

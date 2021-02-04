@@ -1,0 +1,72 @@
+{% extends "header.html" %}
+
+{% block body %}
+
+<div class="uk-container uk-container-large">
+
+    <nav class="uk-section-secondary uk-navbar uk-preserve-color">
+        <div class="uk-navbar-center">
+            <div class="uk-button-group">
+                <ul class="uk-navbar-nav">
+                    <a href="index-socio">
+                        <button class="uk-button uk-button-large uk-button-secondary uk-active">SYSPREPI - Sistema da
+                            Associação de Pacientes Renais do Piauí</button>
+                    </a>
+
+                    <a href="/perfil-socio">
+                        <button class="uk-button uk-button-large uk-button-secondary">Meus Dados</button>
+                    </a>
+                    <a href="/login">
+                        <button class="uk-button uk-button-large uk-button-secondary">Sair da Conta</button>
+                    </a>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="uk-child-width-1-1@s uk-container-small uk-margin-auto  uk-margin-xlarge" uk-grid>
+
+        <table class="uk-table uk-table-striped uk-table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Valor</th>
+                    <th>Forma de Pagamento</th>
+                    <th>Dia</th>
+                 
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>R$ 100,00</td>
+                    <td>Cartão de Crédito</td>
+                    <td>25/04/2021</td>
+               
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>R$ 100,00</td>
+                    <td>Boleto</td>
+                    <td>12/03/2021</td>
+           
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>R$ 100,00</td>
+                    <td>Tranferência</td>
+                    <td>01/02/2021</td>
+              
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}
