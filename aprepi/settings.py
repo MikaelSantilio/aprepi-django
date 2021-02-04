@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'users',
     'donations',
     'core',
+    'evento',
 ]
 
 MIDDLEWARE = [
