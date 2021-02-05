@@ -1,0 +1,54 @@
+{% extends "core/dashboard.html" %}
+{% load humanize %}
+{% load widget_tweaks %}
+{% block dashboard_content %}
+
+<div class="uk-child-width-1-1@s uk-container-small uk-margin-auto  uk-margin-xlarge" uk-grid>
+    <h4 class="uk-card-title uk-text-center">Detalhes Evento</h4>
+    <form method="post" action="{% url 'events:update' pk=obj.pk %}">
+    <table class="uk-table uk-table-striped uk-table-hover">
+        <thead>
+            <tr>
+                <th>Campo</th>
+                <th>Valor</th>
+                <th>Atualizar</th>
+
+            </tr>
+        </thead>
+            <tbody>
+            <tr>
+                <th>Nome</th>
+                <td>{{ obj.event_name }}</td>
+                <td>{{ form.event_name|add_class:"uk-input" }}</td>
+            </tr>
+            <tr>
+                <th>Data de ínicio</th>
+                <td>{{ obj.start_date|date:"d/m/Y" }}</td>
+                <td>{{ form.start_date|add_class:"uk-input"|attr:"type:date" }}</td>
+            </tr>
+            <tr>
+                <th>Data de termino</th>
+                <td>{{ obj.end_date|date:"d/m/Y" }}</td>
+                <td>{{ form.end_date|add_class:"uk-input"|attr:"type:date" }}</td>
+            </tr>
+            <tr>
+                <th>Voluntários</th>
+                <td>{{ obj.volunteers }}</td>
+                <td>{{ form.volunteers|add_class:"uk-input" }}</td>
+            </tr>
+            <tr>
+                <th>Detalhes</th>
+                <td>{{ obj.event_details }}</td>
+                <td>{{ form.event_details|add_class:"uk-input" }}</td>
+            </tr>
+        </tbody>
+        
+        
+    </table>
+    <div class="uk-margin">
+        <button type="submit" class="uk-button uk-button-primary uk-button-large uk-width-1-1">Salvar</button>
+    </div>
+    </form> 
+
+</div>
+{% endblock dashboard_content %}

@@ -1,0 +1,46 @@
+{% extends "core/dashboard.html" %}
+{% load humanize %}
+{% block dashboard_content %}
+
+<div class="uk-child-width-1-1@s uk-container-small uk-margin-auto  uk-margin-xlarge" uk-grid>
+
+    <table class="uk-table uk-table-striped uk-table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Data de início</th>
+                <th>Data de término</th>
+                <th>Apagar</th>
+             
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for obj in object_list %}
+            <tr >
+                <td>{{ obj.id }}</td>
+                <td><a class="uk-link-text" href="{% url 'events:update' pk=obj.id %}">{{ obj.event_name }}</a></td>
+                <td>{{ obj.start_date|date:"d/m/Y" }}</td>
+                <td>{{ obj.end_date|date:"d/m/Y" }}</td>
+                <td><a class="uk-button uk-button-danger" href="#modal-{{obj.id}}" uk-icon="icon: trash" uk-toggle></a></td>
+            </tr>
+            <div id="modal-{{obj.id}}" uk-modal>
+                <div class="uk-modal-dialog uk-modal-body">
+                    <form method="post" action="{% url 'events:delete' pk=obj.pk %}">
+                        {% csrf_token %}
+                    <h2 class="uk-modal-title">Atenção!</h2>
+                    <p>Tem certeza que deseja apagar este evento?</p>
+                    <p class="uk-text-right">
+                        <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
+                        <button type="submit" class="uk-button uk-button-danger" type="button">Apagar</button>
+                    </p>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock dashboard_content %}

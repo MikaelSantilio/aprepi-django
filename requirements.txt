@@ -6,3 +6,11 @@ django-extensions==3.1.0
 flake8==3.8.4
 # Widget Tweaks
  django-widget-tweaks==1.4.8
+ mercadopago==1.2.0
+
+ # Django REST Framework
+djangorestframework==3.12.2
+django-cors-headers==3.6.0
+django-filter==2.4.0
+drf-yasg==1.20.0
+djangorestframework-simplejwt==4.6.0
