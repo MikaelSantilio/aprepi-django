@@ -7,7 +7,7 @@
 
     <div class="uk-width-1-1@m">
         <div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
-            <h4 class="uk-card-title uk-text-center">FAZER DOAÇÃO</h4>
+            <h4 class="uk-card-title uk-text-center">{{ form_title }}</h4>
             
             <form method="post" action="{% url 'donations:unique-donation' %}">
                 {% csrf_token %}
@@ -17,6 +17,15 @@
                         {{ form.donated_value|add_class:"uk-input uk-form-large"|attr:"placeholder:R$" }}
                     </div>
                 </div>
+
+                {% if is_event %}
+                <div class="uk-margin">
+                    <label class="uk-label uk-label-primary uk-margin-small-bottom">Evento</label>
+                    <div class="uk-inline uk-width-1-1">
+                        {{ form.event|add_class:"uk-select uk-form-large" }}
+                    </div>
+                </div>
+                {% endif %}
                 
                 <div class="uk-margin">
                     <button type="submit" class="uk-button uk-button-primary uk-button-large uk-width-1-1">Continuar</button>

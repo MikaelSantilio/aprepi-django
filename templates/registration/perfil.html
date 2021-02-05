@@ -1,0 +1,41 @@
+{% extends "core/dashboard.html" %}
+{% load humanize %}
+{% load widget_tweaks %}
+{% block dashboard_content %}
+
+
+        <div class="uk-container uk-container-small uk-margin-large-bottom">
+            
+            <form method="post" action="{% url 'users:profile-detail' %}">
+                {% csrf_token %}
+                <fieldset class="uk-fieldset">
+            
+                    <legend class="uk-legend">Meus dados</legend>
+            
+                    <div class="uk-margin">
+                        <label class="uk-label uk-label-primary uk-margin-small-bottom">Usuário</label>
+                        {{ user_form.username|add_class:"uk-input" }}
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-label uk-label-primary uk-margin-small-bottom">Primeiro Nome</label>
+                        {{ user_form.first_name|add_class:"uk-input" }}
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-label uk-label-primary uk-margin-small-bottom">Último Nome</label>
+                        {{ user_form.last_name|add_class:"uk-input" }}
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-label uk-label-primary uk-margin-small-bottom">Telefone</label>
+                        {{ profile_form.phone_number|add_class:"uk-input" }}
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-label uk-label-primary uk-margin-small-bottom">CPF</label>
+                        {{ profile_form.cpf|add_class:"uk-input" }}
+                    </div>
+            
+                </fieldset>
+                <button type="submit" class="uk-button uk-button-primary">Salvar</button>
+            </form>
+        </div>
+
+{% endblock dashboard_content %}

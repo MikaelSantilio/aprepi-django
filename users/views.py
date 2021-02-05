@@ -244,26 +244,20 @@ class VoluntarySignUpView(EmployeeRequiredMixin, TemplateResponseMixin, FormErro
 class MyProfileUpdateView(LoginRequiredMixin, TemplateResponseMixin, FormErrorMessageMixin, ContextMixin, View):
     # All users can access this view
     model = get_user_model()
-    template_name = 'registration/signup_form.html'
+    template_name = 'registration/perfil.html'
     fields = '__all__'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
-        context['user_profile'] = user
-        context['user_form'] = SignUpForm()
-        context['profile_profile'] = user.get_profile()
-        context['profile_form'] = ProfileForm()
+        context['user_form'] = SignUpForm(instance=user)
+        context['profile_form'] = ProfileForm(instance=user.get_profile())
 
         if not self.request.POST:
             if user.is_member:
-                profile = user.get_member_profile()
-                context['member_profile'] = profile
-                context['member_form'] = MemberForm()
-            elif user.is_voluntary:
-                profile = user.get_voluntary_profile()
-                context['voluntary_profile'] = profile
-                context['voluntary_form'] = VoluntaryForm()
+                context['member_form'] = MemberForm(instance=user.get_member_profile())
+            if user.is_voluntary:
+                context['voluntary_form'] = VoluntaryForm(instance=user.get_voluntary_profile())
 
         return context
 
