@@ -13,6 +13,9 @@ class Event(Base):
     event_details = models.TextField()
     materials = models.TextField()
 
+    def __str__(self):
+        return self.event_name
+
 
 class Cost(Base):
     cost = models.FloatField('R$0.00')
