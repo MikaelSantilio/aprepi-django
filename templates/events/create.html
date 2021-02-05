@@ -1,0 +1,42 @@
+{% extends "core/dashboard.html" %}
+{% load humanize %}
+{% load widget_tweaks %}
+{% block dashboard_content %}
+
+
+        <div class="uk-container uk-container-small uk-margin-large-bottom">
+            
+            <form method="post" action="{% url 'events:create' %}">
+                {% csrf_token %}
+                <fieldset class="uk-fieldset">
+            
+                    <legend class="uk-legend">Cadastro de evento</legend>
+            
+                    <div class="uk-margin">
+                        <label class="uk-label uk-label-primary uk-margin-small-bottom">Nome do evento*</label>
+                        {{ form.event_name|add_class:"uk-input" }}
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-label uk-label-primary uk-margin-small-bottom">Data de início*</label>
+                        {{ form.start_date|add_class:"uk-input"|attr:"type:date" }}
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-label uk-label-primary uk-margin-small-bottom">Data de termino</label>
+                        {{ form.end_date|add_class:"uk-input"|attr:"type:date" }}
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-label uk-label-primary uk-margin-small-bottom">Voluntários</label>
+                        {{ form.volunteers|add_class:"uk-select" }}
+                    </div>
+                    
+                    <div class="uk-margin">
+                        <label class="uk-label uk-label-primary uk-margin-small-bottom">Detalhes</label>
+                        {{ form.event_details|add_class:"uk-textarea" }}
+                    </div>
+            
+                </fieldset>
+                <button type="submit" class="uk-button uk-button-primary">Salvar</button>
+            </form>
+        </div>
+
+{% endblock dashboard_content %}

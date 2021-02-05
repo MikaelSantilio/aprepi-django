@@ -1,23 +1,20 @@
-from django.shortcuts import render
 from core import mercadopago
 from django.conf import settings
-
-from django.views.generic.base import ContextMixin
-from django.views.generic import CreateView, TemplateView, DeleteView, ListView, DetailView, UpdateView, View
-from donations.forms import DonationForm, CreditCardForm
-from django.http import HttpResponse, HttpResponseRedirect
-from django.template.response import TemplateResponse
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
-
-from core.views import RequestFormKwargsMixin
-from django.shortcuts import get_object_or_404
-from users.models import Benefactor
-from donations.models import Donation, RecurringDonation
-from django.contrib import messages
-from donations.models import CreditCard
-from events.models import EventDonation
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
+from django.template.response import TemplateResponse
 from django.urls import reverse_lazy
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  TemplateView, UpdateView, View)
+from django.views.generic.base import ContextMixin
+from events.models import EventDonation
+from users.models import Benefactor
+
+from donations.forms import CreditCardForm, DonationForm
+from donations.models import CreditCard, Donation, RecurringDonation
 
 
 class MakeDonation(LoginRequiredMixin, CreateView):

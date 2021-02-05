@@ -1,21 +1,15 @@
-from core import mercadopago
-from django.conf import settings
-
-from django.views.generic.base import ContextMixin
-from django.views.generic import CreateView, TemplateView, DeleteView, ListView, DetailView, UpdateView, View
-from events.forms import EventForm, EventDonationForm
-from django.http import HttpResponse, HttpResponseRedirect
-from django.template.response import TemplateResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.exceptions import PermissionDenied
-
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-from users.models import Benefactor
-from django.contrib import messages
-from events.models import Event
-from donations.views import MakeDonation
-
+from django.views.generic.base import ContextMixin
 from django.urls import reverse_lazy
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  TemplateView, UpdateView, View, FormView)
+from donations.views import MakeDonation
+from users.models import Benefactor
+
+from events.forms import EventDonationForm, EventForm
+from events.models import Event
 
 
 class EventCreateView(LoginRequiredMixin, CreateView):
