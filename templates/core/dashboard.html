@@ -4,40 +4,13 @@
 
 <div class="uk-container uk-container-large">
 
-    <nav class="uk-section-secondary uk-navbar uk-preserve-color">
-        <div class="uk-navbar-center">
-            <div class="uk-button-group">
-                <ul class="uk-navbar-nav">
-                    <a href="index-socio">
-                        <button class="uk-button uk-button-large uk-button-secondary uk-active">SYSPREPI - Sistema da
-                            Associação de Pacientes Renais do Piauí</button>
-                    </a>
+    {% block navbar %}
+    {% include "core/dashboard_navbar.html" %}
+    {% endblock navbar %}
 
-                    <a href="/perfil-socio">
-                        <button class="uk-button uk-button-large uk-button-secondary">Meus Dados</button>
-                    </a>
-                    <a href="{% url 'users:logout' %}">
-                        <button class="uk-button uk-button-large uk-button-secondary">Sair da Conta</button>
-                    </a>
-
-                </ul>
-
-            </div>
-        </div>
-    </nav>
-
-    <div class="uk-child-width-1-2@s uk-grid-match uk-margin-xlarge" uk-grid>
-    {% for card in cards %}
-        <div>
-            <div class="uk-card uk-card-primary uk-card-hover uk-card-body">
-                <a href="{{ card.url }}">
-                    <h3 class="uk-card-title">{{ card.title }}</h3>
-                </a>
-                <p>{{ card.text }}</p>
-            </div>
-        </div>
-    {% endfor %}
-    </div>
+    {% block dashboard_content %}
+        {% include "core/dashboard_cards.html" %}
+    {% endblock dashboard_content %}
 
 </div>
 

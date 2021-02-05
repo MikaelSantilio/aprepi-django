@@ -4,8 +4,10 @@ from django.contrib.auth import get_user_model
 from django.db import transaction
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.views.generic import View
+from django.views.generic import View, UpdateView
 from django.views.generic.base import ContextMixin, TemplateResponseMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 from users.forms import ProfileForm, SignUpForm, MemberForm, VoluntaryForm
 from users.models import Benefactor
@@ -107,7 +109,7 @@ class BenefactorSignUpView(TemplateResponseMixin, FormErrorMessageMixin, Context
             return self.render_to_response(self.get_context_data())
 
     def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
+        if request.user.is_authenticated and not (request.user.is_employee or request.user.is_superuser):
             return HttpResponseRedirect(reverse_lazy('core:home'))
         return self.render_to_response(self.get_context_data())
 
@@ -227,3 +229,99 @@ class VoluntarySignUpView(EmployeeRequiredMixin, TemplateResponseMixin, FormErro
         messages.success(self.request, 'Conta de voluntário criada com sucesso')
 
         return HttpResponseRedirect(reverse_lazy('core:home'))
+
+
+# class MyProfileUpdateView(LoginRequiredMixin, UpdateView):
+
+#     template_name = 'donations/credit_card/update.html'
+#     form = CreditCardForm
+#     context_object_name = 'credit_card'
+
+#     def get_success_url(self):
+#         return reverse_lazy('donations:detail-cc', kwargs={'pk': self.object.id})
+
+
+class MyProfileUpdateView(LoginRequiredMixin, TemplateResponseMixin, FormErrorMessageMixin, ContextMixin, View):
+    # All users can access this view
+    model = get_user_model()
+    template_name = 'registration/signup_form.html'
+    fields = '__all__'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        context['user_profile'] = user
+        context['user_form'] = SignUpForm()
+        context['profile_profile'] = user.get_profile()
+        context['profile_form'] = ProfileForm()
+
+        if not self.request.POST:
+            if user.is_member:
+                profile = user.get_member_profile()
+                context['member_profile'] = profile
+                context['member_form'] = MemberForm()
+            elif user.is_voluntary:
+                profile = user.get_voluntary_profile()
+                context['voluntary_profile'] = profile
+                context['voluntary_form'] = VoluntaryForm()
+
+        return context
+
+    def post(self, request, *args, **kwargs):
+
+        user_form = SignUpForm(request.POST)
+        profile_form = ProfileForm(request.POST)
+        voluntary_form = VoluntaryForm(request.POST)
+
+        member_form = None
+        voluntary_form = None
+        if request.user.is_member:
+            member_form = MemberForm(request.POST)
+        elif request.user.is_voluntary:
+            voluntary_form = VoluntaryForm(request.POST)
+
+        if member_form and voluntary_form:
+            if user_form.is_valid() and profile_form.is_valid() and voluntary_form.is_valid()  and member_form.is_valid():
+                return self.form_valid(user_form)
+
+        elif member_form:
+            if user_form.is_valid() and profile_form.is_valid() and member_form.is_valid():
+                return self.form_valid(user_form)
+
+        elif voluntary_form:
+            if user_form.is_valid() and profile_form.is_valid() and voluntary_form.is_valid():
+                return self.form_valid(user_form)
+        else:
+            self.send_form_error_messages(request, messages, user_form, profile_form)
+
+            return self.render_to_response(self.get_context_data())
+
+    def get(self, request, *args, **kwargs):
+        return self.render_to_response(self.get_context_data())
+
+    @transaction.atomic
+    def form_valid(self, user_form):
+        user = user_form.save(commit=False)
+        user.save()
+        user.refresh_from_db()
+
+        profile_form = ProfileForm(self.request.POST)
+        profile_form.full_clean()
+        profile_form.instance.user = user
+        profile_form.save()
+
+        if user.is_member:
+            member_form = MemberForm(self.request.POST)
+            member_form.full_clean()
+            member_form.instance.user = user
+            member_form.save()
+
+        if user.is_voluntary:
+            voluntary_form = VoluntaryForm(self.request.POST)
+            voluntary_form.full_clean()
+            voluntary_form.instance.user = user
+            voluntary_form.save()
+
+        messages.success(self.request, 'Conta atualizada com sucesso')
+
+        return HttpResponseRedirect(reverse_lazy('users:login'))

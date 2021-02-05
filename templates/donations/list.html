@@ -1,0 +1,31 @@
+{% extends "core/dashboard.html" %}
+{% load humanize %}
+{% block dashboard_content %}
+
+<div class="uk-child-width-1-1@s uk-container-small uk-margin-auto  uk-margin-xlarge" uk-grid>
+
+    <table class="uk-table uk-table-striped uk-table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Valor</th>
+                <th>Forma de Pagamento</th>
+                <th>Dia</th>
+             
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for obj in object_list %}
+            <tr>
+                <td>{{ obj.id }}</td>
+                <td>R$ {{ obj.donated_value|floatformat:2|intcomma }} </td>
+                <td>{{ obj.get_method_display }}</td>
+                <td>{{ obj.created_at|date:"d/m/Y" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock dashboard_content %}

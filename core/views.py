@@ -75,10 +75,10 @@ class DashboardView(LoginRequiredMixin, TemplateView):
                     "text": "Faça uma doação para nossa institução"
                 },
                 {
-                    "url": reverse("donations:list-cc"),
-                    "title": "Cartões cadastrados",
-                    "text": "Seus cartões cadastrados"
-                }
+                    "url": reverse("donations:list"),
+                    "title": "Verificar doações feitas",
+                    "text": "Verifique o histórico de todas as suas doações feitas."
+                },
             ]
 
         return cards
