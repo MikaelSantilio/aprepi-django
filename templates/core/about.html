@@ -1,0 +1,59 @@
+{% extends "header.html" %}
+
+{% block body %}
+<div class="uk-container uk-container-large">
+
+	<nav class="uk-section-primary uk-navbar uk-preserve-color">
+		<div class="uk-navbar-center">
+			<div class="uk-button-group">
+
+				<ul class="uk-navbar-nav">
+					<a href="{% url 'core:home' %}"><button class="uk-button uk-button-large uk-button-danger uk-active">SYSPREPI - Sistema da
+					Associação de Pacientes Renais do Piauí</button></a>
+					<!-- <button class="uk-button uk-button-large uk-button-primary">Contato</button> -->
+					<a href="{% url 'core:about' %}"><button class="uk-button uk-button-large uk-button-primary">Sobre Nós</button></a>
+					{% if not user.is_authenticated %}
+					<a href="{% url 'users:signup-benefactor' %}"><button class="uk-button uk-button-large uk-button-primary">Quero ser Benfeitor</button></a>
+					<a href="{% url 'users:login' %}"><button class="uk-button uk-button-large uk-button-primary">Fazer Login</button></a>
+					{% else %}
+					<a href="{% url 'core:dashboard' %}"><button class="uk-button uk-button-large uk-button-primary">Dashboard</button></a>
+					{% endif %}
+				</ul>
+
+			</div>
+		</div>
+	</nav>
+
+	<div class="uk-container-large uk-background-muted">
+		<h1 class="uk-heading-bullet">APREPI - Associação de Pacientes Renais do Piauí</h1>
+
+		<p class="uk-text-italic uk-text-lead">A APREPI, é uma organização da sociedade civil, sem fins lucrativos, de caráter assistencial, filantrópico.</p>
+
+		<blockquote>
+			<p class="uk-text-center">
+				Acolhemos pacientes renais de todo o estado que precisam de estadia na capital durante seu tratamento, de forma gratuita.<br>
+				Todos os seus colaboradores são voluntários.<br>
+				A APREPI é mantida através de doações.<br>
+				A associação fica localizada em Teresina, na Rua Rui Barbosa, s/n, próximo ao estádio Verdão, no Centro da capital.<br>
+				Nosso maior desafio é alcançar de maneira satisfatória a um número maior de necessitados.<br>
+			</p>
+
+			<hr class="uk-divider-icon">
+
+			<ul><p class="uk-text-bold">Temos como finalidade e objetivos:</p>
+				<li>Congregar e prestar assistência aos pacientes renais em tratamento dialítico ou transplantado renal de todo o estado do Piuaí.</li>
+				<li>Interceder junto ao Ministério da Saúde, à Secretaria do Estado da Saúde (Sesapi), secretarias municipais de saúde, serviços de diálise, centros transplantadores e outros órgãos públicos ou privados, visando a assegurar a todos os necessitados o tratamento e fornecimento de medicamento com regularidade, qualidade e segurança;</li>
+				<li>Defender administrativamente e/ou judicialmente os direitos e interesses dos pacientes renais, todo e qualquer órgão;</li>
+				<li>Fiscalizar, isolada ou conjuntamente com a vigilância sanitária e os demais gestores da saúde, o funcionamento dos serviços de diálise e dos centros transplantadores, objetivando a melhoria desses serviços;</li>
+				<li>Colaborar com o Sistema Nacional de Transplantes e seus órgãos gestores representados pelas Centrais de Notificação, Captação Distribuição de Órgãos – CNCDOs e demais órgãos afins;</li>
+				<li>Incentivar a criação de associações congêneres municipais, onde houver serviço de diálise e o acompanhamento de transplantados;</li>
+				<li>Firmar convênios e outros instrumentos jurídicos com entidades congêneres ou não, pessoas jurídicas de direito público ou privado, visando a obter recursos materiais, humanos e financeiros para o atendimento dos objetivos da associação;</li>
+			</ul>
+			<footer class="uk-text-bold">A associação atuará em defesa dos direitos Humanos.</footer>
+		</blockquote>
+
+	</div>
+
+</div>
+
+{% endblock %}

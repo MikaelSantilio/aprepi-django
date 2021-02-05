@@ -44,6 +44,10 @@ class HomeView(TemplateView):
 
     template_name = "core/index.html"
 
+class AboutView(TemplateView):
+
+    template_name = "core/about.html"
+
 
 class DashboardView(LoginRequiredMixin, TemplateView):
 

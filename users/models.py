@@ -78,7 +78,7 @@ class Benefactor(Base):
     user = models.OneToOneField(User, related_name='benefactor', on_delete=models.CASCADE, primary_key=True)
 
     def __str__(self):
-        return f"Benefactor {self.user}"
+        return f"Benfeitor {self.user}"
 
 
 class Voluntary(Base):
@@ -91,4 +91,4 @@ class Voluntary(Base):
         verbose_name_plural = "Volunteers"
 
     def __str__(self):
-        return f"Voluntary {self.user}"
+        return f"Voluntário {self.user}"
