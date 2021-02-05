@@ -1,6 +1,6 @@
 {% extends "form_base.html" %}
 {% load widget_tweaks %}
-{% block form_title %}CADASTRO BENFEITOR{% endblock form_title %}
+{% block form_title %}{{form_title}}{% endblock form_title %}
 {% block form_container %}
 <form method="post" action="{% block form_url %} {{ form_action }} {% endblock form_url %}">
     {% csrf_token %}
