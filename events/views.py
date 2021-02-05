@@ -36,7 +36,7 @@ class EventDetailView(LoginRequiredMixin, DetailView):
 class EventUpdateView(LoginRequiredMixin, UpdateView):
 
     model = Event
-    template_name = 'events/detail.html'
+    template_name = 'events/create.html'
     form = EventForm
     fields = '__all__'
 
