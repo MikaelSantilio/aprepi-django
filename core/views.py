@@ -58,24 +58,6 @@ class DashboardView(LoginRequiredMixin, TemplateView):
 
         cards = []
 
-        if self.request.user.is_employee or self.request.user.is_superuser:
-            cards += [
-                {
-                    "url": reverse("users:signup-member"),
-                    "title": "Cadastrar Sócio",
-                    "text": ""
-                },
-                {
-                    "url": reverse("events:list"),
-                    "title": "Listagem de eventos",
-                    "text": ""
-                },
-                {
-                    "url": reverse("events:create"),
-                    "title": "Criar novo evento",
-                    "text": ""
-                },
-            ]
 
         if self.request.user.is_benefactor:
             cards += [
@@ -93,6 +75,35 @@ class DashboardView(LoginRequiredMixin, TemplateView):
                     "url": reverse("events:donation"),
                     "title": "Fazer doação para evento",
                     "text": "Faça uma doação paras um dos eventos da nossa instituição."
+                },
+            ]
+
+        if self.request.user.is_employee or self.request.user.is_superuser:
+            cards += [
+                {
+                    "url": reverse("events:list"),
+                    "title": "Listagem de eventos",
+                    "text": ""
+                },
+                {
+                    "url": reverse("events:create"),
+                    "title": "Criar novo evento",
+                    "text": ""
+                },
+                {
+                    "url": reverse("users:signup-member"),
+                    "title": "Cadastrar Sócio",
+                    "text": ""
+                },
+                {
+                    "url": reverse("users:signup-employee"),
+                    "title": "Cadastrar Funcionário",
+                    "text": ""
+                },
+                {
+                    "url": reverse("users:signup-voluntary"),
+                    "title": "Cadastrar Voluntário",
+                    "text": ""
                 },
             ]
 
