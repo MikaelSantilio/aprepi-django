@@ -250,20 +250,14 @@ class MyProfileUpdateView(LoginRequiredMixin, TemplateResponseMixin, FormErrorMe
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
-        context['user_obj'] = user
-        context['user_form'] = SignUpForm()
-        context['profile_obj'] = user.get_profile()
-        context['profile_form'] = ProfileForm()
+        context['user_form'] = SignUpForm(instance=user)
+        context['profile_form'] = ProfileForm(instance=user.get_profile())
 
         if not self.request.POST:
             if user.is_member:
-                obj = user.get_member_profile()
-                context['member_obj'] = obj
-                context['member_form'] = MemberForm()
+                context['member_form'] = MemberForm(instance=user.get_member_profile())
             if user.is_voluntary:
-                obj = user.get_voluntary_profile()
-                context['voluntary_obj'] = obj
-                context['voluntary_form'] = VoluntaryForm()
+                context['voluntary_form'] = VoluntaryForm(instance=user.get_voluntary_profile())
 
         return context
 
