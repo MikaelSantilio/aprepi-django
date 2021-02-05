@@ -9,3 +9,8 @@ urlpatterns = [
     path('conta/', include('users.urls', namespace='users')),
     path('evento/', include('events.urls', namespace='events')),
 ]
+
+urlpatterns += [
+    # API base url
+    path("api/", include("aprepi.api_router", namespace="api")),
+]
