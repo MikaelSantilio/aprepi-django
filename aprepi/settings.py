@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '+t#_3i@_h(7lj=_4(s9^igwu*y&&87izjoo$xw7ji_a66!#ri1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = eval(os.getenv('DEBUG', default='True'))
 
 ALLOWED_HOSTS = []
 
@@ -149,7 +149,7 @@ LOGOUT_URL = "users:logout"
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 
-TOKEN_MERCADO_PAGO = str(os.getenv('TOKEN_MERCADO_PAGO'))
+TOKEN_MERCADO_PAGO = str(os.getenv('TOKEN_MERCADO_PAGO', default='AKJSJ1J2O10332BJ2KBKDA'))
 
 # django-rest-framework
 # -------------------------------------------------------------------------------
