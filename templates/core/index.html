@@ -11,7 +11,7 @@
                     <button class="uk-button uk-button-large uk-button-danger uk-active">SYSPREPI - Sistema da
                         Associação de Pacientes Renais do Piauí</button>
                     <!-- <button class="uk-button uk-button-large uk-button-primary">Contato</button> -->
-                    <button class="uk-button uk-button-large uk-button-primary">Sobre Nós</button>
+                    <a class="uk-button uk-button-large uk-button-primary" href="{% url 'core:about' %}">Sobre Nós</a>
                     {% if not user.is_authenticated %}
                         <a href="{% url 'users:signup-benefactor' %}"><button class="uk-button uk-button-large uk-button-primary">Quero ser Benfeitor</button></a>
                         <a href="{% url 'users:login' %}"><button class="uk-button uk-button-large uk-button-primary">Fazer Login</button></a>

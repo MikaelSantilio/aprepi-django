@@ -42,6 +42,7 @@ class MemberSignUpView(EmployeeRequiredMixin, TemplateResponseMixin, FormErrorMe
         context['form_action'] = reverse_lazy("users:signup-member")
         context['member_form'] = member_form
         context['profile_form'] = profile_form
+        context['form_title'] = 'CADASTRO SÓCIO'
 
         return context
 
@@ -68,17 +69,19 @@ class MemberSignUpView(EmployeeRequiredMixin, TemplateResponseMixin, FormErrorMe
         user.save()
         user.refresh_from_db()
 
-        profile_form = ProfileForm(self.request.POST, instance=user.profile)
+        profile_form = ProfileForm(self.request.POST)
         profile_form.full_clean()
+        profile_form.instance.user = user
         profile_form.save()
 
-        member_form = MemberForm(self.request.POST, instance=user.member)
+        member_form = MemberForm(self.request.POST)
         member_form.full_clean()
+        member_form.instance.user = user
         member_form.save()
 
         messages.success(self.request, 'Conta de sócio criada com sucesso')
 
-        return HttpResponseRedirect(reverse_lazy('core:home'))
+        return HttpResponseRedirect(reverse_lazy('core:dashboard'))
 
 
 class BenefactorSignUpView(TemplateResponseMixin, FormErrorMessageMixin, ContextMixin, View):
@@ -92,6 +95,7 @@ class BenefactorSignUpView(TemplateResponseMixin, FormErrorMessageMixin, Context
 
         context['form_action'] = reverse_lazy("users:signup-benefactor")
         context['user_form'] = user_form
+        context['form_title'] = 'CADASTRO BENFEITOR'
         context['profile_form'] = profile_form
 
         return context
@@ -142,6 +146,7 @@ class EmployeeSignUpView(SuperuserRequiredMixin, TemplateResponseMixin, FormErro
 
         context['form_action'] = reverse_lazy("users:signup-employee")
         context['user_form'] = user_form
+        context['form_title'] = 'CADASTRO FUNCIONÁRIO'
         context['profile_form'] = profile_form
 
         return context
@@ -169,13 +174,14 @@ class EmployeeSignUpView(SuperuserRequiredMixin, TemplateResponseMixin, FormErro
         user.save()
         user.refresh_from_db()
 
-        profile_form = ProfileForm(self.request.POST, instance=user.profile)
+        profile_form = ProfileForm(self.request.POST)
         profile_form.full_clean()
+        profile_form.instance.user = user
         profile_form.save()
 
         messages.success(self.request, 'Conta de funcionário criada com sucesso')
 
-        return HttpResponseRedirect(reverse_lazy('core:home'))
+        return HttpResponseRedirect(reverse_lazy('core:dashboard'))
 
 
 class VoluntarySignUpView(EmployeeRequiredMixin, TemplateResponseMixin, FormErrorMessageMixin, ContextMixin, View):
@@ -192,6 +198,7 @@ class VoluntarySignUpView(EmployeeRequiredMixin, TemplateResponseMixin, FormErro
         context['form_action'] = reverse_lazy("users:signup-voluntary")
         context['voluntary_form'] = voluntary_form
         context['profile_form'] = profile_form
+        context['form_title'] = 'CADASTRO VOLUNTÁRIO'
 
         return context
 
@@ -218,17 +225,19 @@ class VoluntarySignUpView(EmployeeRequiredMixin, TemplateResponseMixin, FormErro
         user.save()
         user.refresh_from_db()
 
-        profile_form = ProfileForm(self.request.POST, instance=user.profile)
+        profile_form = ProfileForm(self.request.POST)
         profile_form.full_clean()
+        profile_form.instance.user = user
         profile_form.save()
 
-        voluntary_form = VoluntaryForm(self.request.POST, instance=user.voluntary)
+        voluntary_form = VoluntaryForm(self.request.POST)
         voluntary_form.full_clean()
+        voluntary_form.instance.user = user
         voluntary_form.save()
 
         messages.success(self.request, 'Conta de voluntário criada com sucesso')
 
-        return HttpResponseRedirect(reverse_lazy('core:home'))
+        return HttpResponseRedirect(reverse_lazy('core:dashboard'))
 
 
 # class MyProfileUpdateView(LoginRequiredMixin, UpdateView):
