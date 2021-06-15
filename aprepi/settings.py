@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'widget_tweaks',
     "rest_framework",
+    'corsheaders',
     # "rest_framework.authtoken",
     "django_filters",
     "drf_yasg",
@@ -43,11 +44,12 @@ INSTALLED_APPS = [
     'donations',
     'core',
     'events',
-    'member'
+    'member',
 ]
 
 MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -192,3 +194,5 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
 }   
+
+CORS_ORIGIN_ALLOW_ALL = True
