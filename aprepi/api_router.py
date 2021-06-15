@@ -6,9 +6,9 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="UP Revendas API",
+      title="APREPI API",
       default_version='v1',
-      description="Exemplo de API para sistema de loja de veículos",
+      description="Sistema de gestão APREPI",
       terms_of_service="https://www.google.com/policies/terms/",
       contact=openapi.Contact(email="mikael.santilio@gmail.com"),
       license=openapi.License(name="MIT License"),
