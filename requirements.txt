@@ -22,3 +22,4 @@ psycopg2-binary==2.8.6
 gunicorn==20.1.0
 whitenoise==5.2.0
 django-cors-headers==3.6.0
+factory-boy==3.2.0
