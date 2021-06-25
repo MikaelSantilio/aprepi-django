@@ -46,14 +46,16 @@ class EventUpdateView(LoginRequiredMixin, UpdateView):
         return context
 
     def get_success_url(self):
-        return reverse_lazy('events:detail', kwargs={'pk': self.object.id})
+        return reverse_lazy('events:list')
 
 
 class EventDeleteView(LoginRequiredMixin, DeleteView):
 
     model = Event
-    template_name = 'events/delete.html'
     success_url = reverse_lazy('events:list')
+
+    def get(self, request, *args, **kwargs):
+        return HttpResponseRedirect(self.success_url)
 
 
 class MakeDonationEventView(MakeDonation):
